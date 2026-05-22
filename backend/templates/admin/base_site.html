@@ -1,0 +1,50 @@
+{% extends "admin/base.html" %}
+{% load i18n static %}
+
+{% block title %}{% if subtitle %}{{ subtitle }} | {% endif %}{{ title }} | {{ site_title|default:"Brauni Food" }}{% endblock %}
+
+{% block extrastyle %}
+{{ block.super }}
+{% endblock %}
+
+{% block dark-mode-vars %}{% endblock %}
+
+{% block responsive %}
+{{ block.super }}
+<link rel="stylesheet" href="{% static 'admin/css/brauni_admin.css' %}?v=20260522-ui3">
+{% endblock %}
+
+{% block extrahead %}
+{{ block.super }}
+<link rel="icon" href="{% static 'admin/img/логотип.svg' %}" type="image/svg+xml">
+{% endblock %}
+
+{% block branding %}
+<div id="site-name" class="bf-brand">
+  <a href="{% url 'admin:index' %}" aria-label="Brauni Food">
+    <img src="{% static 'admin/img/логотип.svg' %}" alt="" width="68" height="68">
+    <span>{{ site_header|default:"Brauni Food" }}</span>
+  </a>
+</div>
+{% endblock %}
+
+{% block userlinks %}
+    {% if site_url %}
+        <a href="{{ site_url }}">{% translate 'View site' %}</a> /
+    {% endif %}
+    {% if user.is_active and user.is_staff %}
+        {% url 'django-admindocs-docroot' as docsroot %}
+        {% if docsroot %}
+            <a href="{{ docsroot }}">{% translate 'Documentation' %}</a> /
+        {% endif %}
+    {% endif %}
+    {% if user.has_usable_password %}
+        <a href="{% url 'admin:password_change' %}">{% translate 'Change password' %}</a> /
+    {% endif %}
+    <form id="logout-form" method="post" action="{% url 'admin:logout' %}">
+        {% csrf_token %}
+        <button type="submit">{% translate 'Log out' %}</button>
+    </form>
+{% endblock %}
+
+{% block nav-global %}{% endblock %}
