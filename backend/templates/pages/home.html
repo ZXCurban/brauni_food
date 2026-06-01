@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+    {% include 'sections/hero.html' with title='Категория' description='' button_text='Подробнее' button_url='/products/' %}
+
+    {% include 'sections/featured_products.html' %}
+
+    {% include 'sections/vacancies_section.html' %}
+
+{% endblock %}

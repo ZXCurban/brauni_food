@@ -1,0 +1,82 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block content %}
+
+<section
+    class="
+        py-24
+    "
+>
+
+    <div
+        class="
+            container-custom
+            grid
+            lg:grid-cols-2
+            gap-20
+            items-center
+        "
+    >
+
+        <div>
+
+            <span
+                class="
+                    text-accent
+                    uppercase
+                    tracking-[0.3em]
+                    text-sm
+                "
+            >
+                О компании
+            </span>
+
+            <h1
+                class="
+                    mt-6
+                    text-6xl
+                    font-bold
+                    text-primary
+                "
+            >
+                Brauni Food
+            </h1>
+
+            <p
+                class="
+                    mt-8
+                    text-xl
+                    text-zinc-600
+                    leading-relaxed
+                "
+            >
+                Современное производство
+                быстрого питания,
+                гастрономии
+                и кондитерских изделий.
+            </p>
+
+        </div>
+
+        <img
+
+            src="{% static 'images/placeholders/placeholder.png' %}"
+
+            alt="Company"
+
+            class="
+                rounded-[32px]
+                shadow-2xl
+                h-[600px]
+                object-cover
+                w-full
+            "
+        >
+
+    </div>
+
+</section>
+
+{% endblock %}

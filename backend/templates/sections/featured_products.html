@@ -1,0 +1,70 @@
+<section class="featured-products-section">
+
+    <div class="featured-products-container">
+
+        <!-- TOP -->
+
+        <div class="featured-products-top">
+
+            <div class="featured-products-heading">
+
+                <div class="featured-products-label">
+                    Категории
+                </div>
+
+                <h2 class="featured-products-title">
+                    Наша продукция
+                </h2>
+
+            </div>
+
+        </div>
+
+
+        <!-- CATEGORY TABS -->
+
+        <div class="featured-products-tabs">
+
+            {% for category in categories %}
+
+                <button
+                    class="
+                        featured-products-tab
+                        {% if category.id == featured_category.id %}
+                            is-active
+                        {% endif %}
+                    "
+                    type="button"
+                >
+                    {{ category.name }}
+                </button>
+
+            {% endfor %}
+
+        </div>
+
+
+        <!-- ACTIVE CATEGORY -->
+
+        <div class="featured-products-active-category">
+
+            {{ featured_category.name }}
+
+        </div>
+
+
+        <!-- PRODUCTS GRID -->
+
+        <div class="featured-products-grid">
+
+            {% for product in featured_products %}
+
+                {% include 'components/product_card.html' %}
+
+            {% endfor %}
+
+        </div>
+
+    </div>
+
+</section>

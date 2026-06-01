@@ -1,0 +1,168 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<section
+    class="
+        py-24
+    "
+>
+
+    <div
+        class="
+            container-custom
+        "
+    >
+
+        <!-- PAGE HEADER -->
+
+        <div
+            class="
+                mb-24
+            "
+        >
+
+            <span
+                class="
+                    text-accent
+                    uppercase
+                    tracking-[0.3em]
+                    text-sm
+                "
+            >
+                Каталог
+            </span>
+
+            <h1
+                class="
+                    mt-4
+                    text-6xl
+                    font-bold
+                    text-primary
+                "
+            >
+                Наша продукция
+            </h1>
+
+        </div>
+
+        <!-- CATEGORIES -->
+
+        {% for category in categories %}
+
+            <section
+                class="
+                    mb-28
+                "
+            >
+
+                <!-- CATEGORY HEADER -->
+
+                <div
+                    class="
+                        mb-14
+                    "
+                >
+
+                    <div
+                        class="
+                            flex
+                            items-center
+                            gap-6
+                        "
+                    >
+
+                        <h2
+                            class="
+                                text-4xl
+                                lg:text-5xl
+                                font-bold
+                                text-primary
+                            "
+                        >
+                            {{ category.name }}
+                        </h2>
+
+                        <span
+                            class="
+                                text-zinc-400
+                                text-lg
+                            "
+                        >
+                            {{ category.products.count }}
+                        </span>
+
+                    </div>
+
+                    <!-- DIVIDER -->
+
+                    <div
+                        class="
+                            mt-6
+                            h-px
+                            w-full
+                            bg-primary/10
+                        "
+                    ></div>
+
+                </div>
+
+                <!-- PRODUCTS GRID -->
+
+                <div
+                    class="
+                        grid
+                        md:grid-cols-2
+                        xl:grid-cols-3
+                        gap-10
+                    "
+                >
+
+                    {% for product in category.products.all %}
+
+                        {% include 'components/product_card.html' %}
+
+                    {% empty %}
+
+                        <div
+                            class="
+                                text-zinc-500
+                            "
+                        >
+                            В этой категории пока нет товаров.
+                        </div>
+
+                    {% endfor %}
+
+                </div>
+
+            </section>
+
+        {% empty %}
+
+            <div
+                class="
+                    py-32
+                    text-center
+                "
+            >
+
+                <h2
+                    class="
+                        text-4xl
+                        font-bold
+                        text-primary
+                    "
+                >
+                    Категории пока пусты
+                </h2>
+
+            </div>
+
+        {% endfor %}
+
+    </div>
+
+</section>
+
+{% endblock %}

@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<section class="py-24">
+
+    <div class="container-custom">
+
+        <h1
+            class="
+                text-6xl
+                font-bold
+                text-primary
+            "
+        >
+            Вакансии
+        </h1>
+
+        <div
+            class="
+                mt-16
+                grid
+                gap-10
+            "
+        >
+
+            {% for vacancy in vacancies %}
+
+                {% include 'components/vacancy_card.html' %}
+
+            {% endfor %}
+
+        </div>
+
+    </div>
+
+</section>
+
+{% endblock %}

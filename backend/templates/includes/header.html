@@ -1,0 +1,46 @@
+{% load static %}
+{% with current=request.path %}
+
+<header class="site-header">
+    <div class="header-container">
+
+        <nav class="header-nav header-nav-left">
+            <a href="/" class="nav-pill {% if current == '/' %}nav-pill-active{% endif %}">
+                <span>Главная</span>
+            </a>
+
+            <a href="/products/" class="nav-pill {% if '/products' in current %}nav-pill-active{% endif %}">
+                <span>Продукция</span>
+            </a>
+        </nav>
+
+        <a href="/" class="header-logo">
+            <img
+                src="{% static 'images/logo/logo_blue.svg' %}"
+                alt="Brauni Food"
+            >
+        </a>
+
+        <nav class="header-nav header-nav-right">
+            <a href="/company/" class="nav-pill {% if '/company' in current %}nav-pill-active{% endif %}">
+                <span>О компании</span>
+            </a>
+
+            <a href="/vacancies/" class="nav-pill {% if '/vacancies' in current %}nav-pill-active{% endif %}">
+                <span>Вакансии</span>
+            </a>
+        </nav>
+
+        <button class="mobile-burger">
+            <img
+                src="{% static 'icons/burger_blue.svg' %}"
+                alt="Меню"
+            >
+        </button>
+
+    </div>
+
+    <div class="header-divider"></div>
+</header>
+
+{% endwith %}

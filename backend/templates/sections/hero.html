@@ -1,0 +1,90 @@
+{% load static %}
+
+<section class="hero-section">
+
+    <!-- TOP FADE IMAGE -->
+
+    <div class="hero-top-fade">
+
+        <img
+            src="{% static 'images/placeholders/placeholder.png' %}"
+            alt=""
+        >
+
+    </div>
+
+
+    <!-- HERO CONTENT -->
+
+    <div class="hero-container">
+
+        <div class="hero-content">
+
+            <h1 class="hero-title">
+                {{ title }}
+            </h1>
+
+            {% if description %}
+                <p class="hero-description">
+                    {{ description }}
+                </p>
+            {% endif %}
+
+            {% if button_text %}
+                <a
+                    href="{{ button_url }}"
+                    class="hero-button"
+                >
+                    {{ button_text }}
+                </a>
+            {% endif %}
+
+        </div>
+
+    </div>
+
+
+    <!-- TOP SPIRAL -->
+
+    <div class="hero-top-spiral">
+
+        <img
+            src="{% static 'images/backgrounds/spiral_straight.svg' %}"
+            alt=""
+        >
+
+    </div>
+
+
+    <!-- BLUE BLOCK -->
+
+    <div class="hero-blue-section">
+
+        <div class="hero-bottom-spiral">
+
+            <img
+                src="{% static 'images/backgrounds/spiral_curve.svg' %}"
+                alt=""
+            >
+
+        </div>
+
+        <div class="hero-blue-content">
+            
+            <h2>
+                Заголовок
+            </h2>
+
+            <p>
+                Свежие десерты и гастрономия.
+            </p>
+
+            <a href="#">
+                Подробнее
+            </a>
+
+        </div>
+
+    </div>
+
+</section>

@@ -1009,6 +1009,70 @@ ul.errorlist li {
   padding: 24px;
 }
 
+.dashboard .main > .content {
+  max-width: none;
+  width: 100%;
+}
+
+.dashboard #content.bf-dashboard-content {
+  box-sizing: border-box;
+  max-width: none;
+  width: 100%;
+}
+
+.dashboard #content.bf-dashboard-content,
+.dashboard .bf-dashboard-hero,
+.dashboard .bf-metrics,
+.dashboard .bf-dashboard-grid {
+  min-width: 0;
+}
+
+.dashboard #content-main,
+.dashboard #content-related {
+  float: none;
+  margin: 0;
+  max-width: none;
+  width: auto;
+}
+
+.dashboard #content-main,
+.dashboard #content-related {
+  min-width: 0;
+}
+
+.bf-dashboard-grid {
+  align-items: start;
+  display: grid;
+  gap: 20px;
+  grid-template-columns: minmax(0, 2.5fr) 400px;
+  width: 100%;
+}
+
+.dashboard #content-main.app-list {
+  display: grid;
+  gap: 16px;
+}
+
+.dashboard #content-main.app-list .module {
+  margin: 0;
+}
+
+.dashboard #content-main.app-list table {
+  width: 100%;
+}
+
+.dashboard #content-main.app-list a.section:link,
+.dashboard #content-main.app-list a.section:visited {
+  color: var(--bf-blue-900);
+  text-decoration: none;
+}
+
+.dashboard #content-main.app-list a.section:hover,
+.dashboard #content-main.app-list a.section:focus {
+  color: var(--bf-blue-950);
+  text-decoration: underline;
+}
+
 .bf-dashboard-hero h1 {
   margin-bottom: 8px !important;
 }
@@ -1031,8 +1095,9 @@ ul.errorlist li {
 .bf-metrics {
   display: grid;
   gap: 14px;
-  grid-template-columns: repeat(5, minmax(140px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
   margin-bottom: 20px;
+  width: 100%;
 }
 
 .bf-metric {
@@ -1074,11 +1139,18 @@ ul.errorlist li {
 
 .dashboard #content-related {
   background: var(--bf-surface);
+  align-self: start;
 }
 
 .dashboard #content-related h2,
 .dashboard #content-related h3 {
   color: var(--bf-blue-950);
+}
+
+.dashboard #content-related .module {
+  border: 0;
+  border-radius: 0;
+  box-shadow: none;
 }
 
 .dashboard #content-related .module h2 {
@@ -1135,7 +1207,7 @@ ul.errorlist li {
 
 @media (max-width: 1280px) {
   .bf-metrics {
-    grid-template-columns: repeat(3, minmax(160px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
   }
 }
 
@@ -1148,7 +1220,11 @@ ul.errorlist li {
   }
 
   .bf-metrics {
-    grid-template-columns: repeat(2, minmax(160px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  }
+
+  .bf-dashboard-grid {
+    grid-template-columns: 1fr;
   }
 }
 

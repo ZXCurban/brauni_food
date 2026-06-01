@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django_vite',
     'apps.products',
     'apps.categories',
     'apps.vacancies',
@@ -153,3 +154,13 @@ CORS_ALLOWED_ORIGINS = [
     ).split(',')
     if origin.strip()
 ]
+
+# Django Vite Configuration
+DJANGO_VITE = {
+    'default': {
+        'dev_mode': True,
+        'dev_server_host': '127.0.0.1',
+        'dev_server_port': 5173,
+        'manifest_path': BASE_DIR / 'static' / 'dist' / '.vite' / 'manifest.json',
+    }
+}

@@ -1,0 +1,44 @@
+<a
+    href="#"
+    class="product-card"
+>
+
+    <div class="product-card-image-wrapper">
+
+        <img
+            src="{{ product.image_url }}"
+            alt="{{ product.name }}"
+            class="product-card-image"
+        >
+
+    </div>
+
+    <div class="product-card-content">
+
+        <h3 class="product-card-title">
+            {{ product.name }}
+        </h3>
+
+        {% if product.ingredients %}
+            <p class="product-card-ingredients">
+                {{ product.ingredients|truncatechars:80 }}
+            </p>
+        {% endif %}
+
+        <div class="product-card-bottom">
+
+            {% if product.weight %}
+                <div class="product-card-weight">
+                    {{ product.weight }}
+                </div>
+            {% endif %}
+
+            <div class="product-card-price">
+                {{ product.price }} ₽
+            </div>
+
+        </div>
+
+    </div>
+
+</a>
