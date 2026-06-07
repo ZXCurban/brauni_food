@@ -1,6 +1,7 @@
 # Railway deployment configuration
+
 [build]
-  builder = "nixpacks"
+  builder = "railpack"
   buildCommand = "cd frontend && npm ci && npm run build"
 
 [deploy]
