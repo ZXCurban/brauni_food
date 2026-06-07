@@ -1,0 +1,147 @@
+{% extends 'base.html' %}
+
+{% block title %}Правила возврата — Брауни Фуд{% endblock %}
+{% block meta_description %}Правила и условия возврата продукции Брауни Фуд. Порядок возврата, сроки, контактные данные для обращения.{% endblock %}
+
+{% block content %}
+
+<section class="products-catalog-section">
+    <div class="featured-products-container">
+
+        <div class="featured-products-top">
+            <div class="featured-products-label">
+                Документы
+            </div>
+            <h1 class="featured-products-title">
+                Правила возврата
+            </h1>
+        </div>
+
+        <div class="company-content-text" style="max-width: 800px;">
+
+            <h2 class="company-content-title" style="font-size: 28px; margin-top: 0;">
+                1. Общие положения
+            </h2>
+            <p>
+                1.1. Настоящие Правила возврата разработаны в соответствии
+                с Законом РФ «О защите прав потребителей» и Гражданским кодексом РФ.
+            </p>
+            <p>
+                1.2. Правила распространяются на всю продукцию, реализуемую
+                {% if company_info and company_info.legal_name %}{{ company_info.legal_name }}{% elif company_info %}{{ company_info.title }}{% else %}компанией{% endif %}
+                (далее — «Продавец»).
+            </p>
+
+            <h2 class="company-content-title" style="font-size: 28px; margin-top: 36px;">
+                2. Порядок возврата
+            </h2>
+            <p>
+                2.1. Покупатель имеет право отказаться от Товара в любое
+                время до его передачи, а после передачи Товара —
+                в порядке и сроки, установленные настоящими Правилами
+                и действующим законодательством РФ.
+            </p>
+            <p>
+                2.2. Для оформления возврата Покупатель направляет Продавцу
+                письменное обращение с указанием:
+            </p>
+            <ul style="margin: 0 0 14px 20px; color: rgba(25,22,84,0.74); font-size: 20px; line-height: 1.55;">
+                <li>номера и даты заказа;</li>
+                <li>наименования и количества возвращаемого Товара;</li>
+                <li>причины возврата;</li>
+                <li>контактных данных для связи.</li>
+            </ul>
+
+            <h2 class="company-content-title" style="font-size: 28px; margin-top: 36px;">
+                3. Сроки возврата
+            </h2>
+            <p>
+                3.1. Возврат Товара надлежащего качества:
+            </p>
+            <ul style="margin: 0 0 14px 20px; color: rgba(25,22,84,0.74); font-size: 20px; line-height: 1.55;">
+                <li>Продовольственные товары надлежащего качества
+                    возврату и обмену не подлежат согласно Постановлению
+                    Правительства РФ № 2463 от 31.12.2020.</li>
+            </ul>
+            <p>
+                3.2. Возврат Товара ненадлежащего качества:
+            </p>
+            <ul style="margin: 0 0 14px 20px; color: rgba(25,22,84,0.74); font-size: 20px; line-height: 1.55;">
+                <li>При обнаружении производственного брака или несоответствия
+                    Товара заявленным характеристикам Покупатель вправе
+                    потребовать замены Товара или возврата денежных средств.</li>
+                <li>Срок рассмотрения обращения — до 10 (десяти) рабочих дней
+                    с момента получения письменного обращения.</li>
+            </ul>
+
+            <h2 class="company-content-title" style="font-size: 28px; margin-top: 36px;">
+                4. Способы обращения
+            </h2>
+            <p>
+                Для оформления возврата, пожалуйста, свяжитесь с нами
+                одним из следующих способов:
+            </p>
+            <ul style="margin: 0 0 14px 20px; color: rgba(25,22,84,0.74); font-size: 20px; line-height: 1.55;">
+                {% if company_info and company_info.phone %}
+                <li>По телефону: {{ company_info.phone }}</li>
+                {% endif %}
+                {% if company_info and company_info.email %}
+                <li>По электронной почте: {{ company_info.email }}</li>
+                {% endif %}
+                {% if company_info and company_info.address %}
+                <li>По адресу: {{ company_info.address }}</li>
+                {% endif %}
+            </ul>
+
+            <h2 class="company-content-title" style="font-size: 28px; margin-top: 36px;">
+                5. Порядок возврата денежных средств
+            </h2>
+            <p>
+                5.1. Возврат денежных средств производится в течение 10 (десяти)
+                рабочих дней с момента принятия Продавцом решения
+                об удовлетворении требования Покупателя.
+            </p>
+            <p>
+                5.2. Возврат осуществляется тем же способом, которым была
+                произведена оплата, если сторонами не согласовано иное.
+            </p>
+
+            <h2 class="company-content-title" style="font-size: 28px; margin-top: 36px;">
+                6. Контактная информация
+            </h2>
+
+            {% if company_info %}
+            <dl class="company-legal-list" style="margin-top: 20px;">
+                {% if company_info.legal_name %}
+                <div class="company-legal-item">
+                    <dt>Продавец</dt>
+                    <dd>{{ company_info.legal_name }}</dd>
+                </div>
+                {% endif %}
+                {% if company_info.phone %}
+                <div class="company-legal-item">
+                    <dt>Телефон</dt>
+                    <dd>{{ company_info.phone }}</dd>
+                </div>
+                {% endif %}
+                {% if company_info.email %}
+                <div class="company-legal-item">
+                    <dt>Email</dt>
+                    <dd>{{ company_info.email }}</dd>
+                </div>
+                {% endif %}
+                {% if company_info.address %}
+                <div class="company-legal-item">
+                    <dt>Адрес</dt>
+                    <dd>{{ company_info.address }}</dd>
+                </div>
+                {% endif %}
+            </dl>
+            {% endif %}
+
+        </div>
+
+    </div>
+</section>
+
+{% endblock %}

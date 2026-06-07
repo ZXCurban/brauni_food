@@ -1,0 +1,45 @@
+services:
+  - type: web
+    name: brauni-food
+    runtime: python
+    region: frankfurt
+    plan: free
+    buildCommand: |
+      cd backend && pip install -r ../requirements.txt
+      cd ../frontend && npm ci && npm run build
+      cd ../backend && python manage.py collectstatic --noinput && python manage.py migrate --noinput
+    startCommand: cd backend && gunicorn config.wsgi:application --workers 3 --bind 0.0.0.0:$PORT
+    envVars:
+      - key: DJANGO_DEBUG
+        value: "False"
+      - key: DJANGO_ALLOWED_HOSTS
+        fromService:
+          name: brauni-food
+          type: web
+          property: host
+      - key: POSTGRES_DB
+        fromDatabase:
+          name: brauni-db
+          property: database
+      - key: POSTGRES_USER
+        fromDatabase:
+          name: brauni-db
+          property: user
+      - key: POSTGRES_PASSWORD
+        fromDatabase:
+          name: brauni-db
+          property: password
+      - key: POSTGRES_HOST
+        fromDatabase:
+          name: brauni-db
+          property: host
+      - key: POSTGRES_PORT
+        fromDatabase:
+          name: brauni-db
+          property: port
+      - key: DJANGO_SECRET_KEY
+        sync: false
+
+databases:
+  - name: brauni-db
+    plan: free

@@ -24,3 +24,4 @@ backend/static/css/brauni-tailwind.css
 
 # OS
 .DS_Store
+backend/static/dist/

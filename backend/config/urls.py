@@ -75,6 +75,26 @@ urlpatterns = [
         include("apps.company.urls"),
     ),
     path(
+        "privacy/",
+        TemplateView.as_view(template_name="pages/privacy.html"),
+        name="privacy",
+    ),
+    path(
+        "cookies/",
+        TemplateView.as_view(template_name="pages/cookies.html"),
+        name="cookies",
+    ),
+    path(
+        "offer/",
+        TemplateView.as_view(template_name="pages/offer.html"),
+        name="offer",
+    ),
+    path(
+        "returns/",
+        TemplateView.as_view(template_name="pages/returns.html"),
+        name="returns",
+    ),
+    path(
         "robots.txt",
         TemplateView.as_view(
             template_name="robots.txt",

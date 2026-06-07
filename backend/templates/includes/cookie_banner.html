@@ -1,0 +1,33 @@
+<div class="cookie-banner is-hidden" id="cookieBanner">
+    <p class="cookie-banner__title">Мы используем cookie</p>
+    <p class="cookie-banner__text">
+        Мы используем cookie-файлы для корректной работы сайта,
+        улучшения пользовательского опыта и анализа посещаемости.
+    </p>
+    <div class="cookie-banner__actions">
+        <button class="cookie-banner__btn--accept" id="cookieAccept" type="button">
+            Принять
+        </button>
+        <a href="/cookies/" class="cookie-banner__btn--more">
+            Подробнее
+        </a>
+    </div>
+</div>
+
+<script>
+(function () {
+    var STORAGE_KEY = 'brauni_cookie_consent';
+    var banner = document.getElementById('cookieBanner');
+    var acceptBtn = document.getElementById('cookieAccept');
+
+    if (!banner || !acceptBtn) return;
+    if (localStorage.getItem(STORAGE_KEY) === 'accepted') return;
+
+    banner.classList.remove('is-hidden');
+
+    acceptBtn.addEventListener('click', function () {
+        localStorage.setItem(STORAGE_KEY, 'accepted');
+        banner.classList.add('is-hidden');
+    });
+})();
+</script>

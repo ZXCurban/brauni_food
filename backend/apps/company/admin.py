@@ -45,11 +45,14 @@ class CompanyInfoAdmin(ContentTextareaMixin, admin.ModelAdmin):
 
     search_fields = (
         "title",
+        "legal_name",
         "short_description",
         "about_text",
         "phone",
         "email",
         "address",
+        "inn",
+        "ogrn",
     )
     readonly_fields = ("hero_preview",)
     save_on_top = True
@@ -82,11 +85,28 @@ class CompanyInfoAdmin(ContentTextareaMixin, admin.ModelAdmin):
             },
         ),
         (
-            "Реквизиты",
+            "Юридические реквизиты",
             {
                 "fields": (
+                    "legal_name",
                     "inn",
+                    "kpp",
                     "ogrn",
+                    "legal_address",
+                    "director_name",
+                    "director_position",
+                ),
+                "classes": ("collapse",),
+            },
+        ),
+        (
+            "Банковские реквизиты",
+            {
+                "fields": (
+                    "bank_name",
+                    "bik",
+                    "payment_account",
+                    "correspondent_account",
                 ),
                 "classes": ("collapse",),
             },

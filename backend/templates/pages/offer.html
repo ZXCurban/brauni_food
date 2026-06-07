@@ -1,0 +1,186 @@
+{% extends 'base.html' %}
+
+{% block title %}Публичная оферта — Брауни Фуд{% endblock %}
+{% block meta_description %}Публичная оферта ООО «Брауни Фуд» на поставку десертов, сэндвичей и гастрономической продукции.{% endblock %}
+
+{% block content %}
+
+<section class="products-catalog-section">
+    <div class="featured-products-container">
+
+        <div class="featured-products-top">
+            <div class="featured-products-label">
+                Документы
+            </div>
+            <h1 class="featured-products-title">
+                Публичная оферта
+            </h1>
+        </div>
+
+        <div class="company-content-text" style="max-width: 800px;">
+
+            <h2 class="company-content-title" style="font-size: 28px; margin-top: 0;">
+                1. Общие положения
+            </h2>
+            <p>
+                1.1. Настоящий документ является официальным предложением
+                (публичной офертой) {% if company_info and company_info.legal_name %}{{ company_info.legal_name }}{% elif company_info %}{{ company_info.title }}{% else %}компании{% endif %}
+                (далее — «Продавец») заключить договор купли-продажи товаров
+                на условиях, изложенных ниже.
+            </p>
+            <p>
+                1.2. В соответствии со статьёй 437 Гражданского кодекса РФ,
+                настоящий документ является публичной офертой. Факт оформления
+                заказа Покупателем является полным и безоговорочным акцептом
+                условий настоящей оферты.
+            </p>
+
+            <h2 class="company-content-title" style="font-size: 28px; margin-top: 36px;">
+                2. Предмет договора
+            </h2>
+            <p>
+                2.1. Продавец обязуется передать в собственность Покупателю
+                кондитерские изделия, десерты, сэндвичи и гастрономическую
+                продукцию (далее — «Товар»), а Покупатель обязуется принять
+                и оплатить Товар на условиях настоящего договора.
+            </p>
+            <p>
+                2.2. Ассортимент, количество и цена Товара определяются
+                на основании заказа Покупателя и подтверждаются Продавцом.
+            </p>
+
+            <h2 class="company-content-title" style="font-size: 28px; margin-top: 36px;">
+                3. Порядок оформления заказа
+            </h2>
+            <p>
+                3.1. Заказ Товара осуществляется Покупателем через
+                контактные данные, указанные на сайте.
+            </p>
+            <p>
+                3.2. При оформлении заказа Покупатель предоставляет
+                необходимую информацию: наименование организации,
+                контактное лицо, телефон, адрес доставки.
+            </p>
+            <p>
+                3.3. Продавец подтверждает заказ после проверки наличия
+                Товара и согласования условий доставки.
+            </p>
+
+            <h2 class="company-content-title" style="font-size: 28px; margin-top: 36px;">
+                4. Цена и порядок расчётов
+            </h2>
+            <p>
+                4.1. Цены на Товар устанавливаются Продавцом и указываются
+                в коммерческом предложении или счёте.
+            </p>
+            <p>
+                4.2. Оплата Товара производится в рублях Российской Федерации
+                путём безналичного перевода на расчётный счёт Продавца.
+            </p>
+            <p>
+                4.3. Условия оплаты согласовываются сторонами индивидуально
+                и могут предусматривать предоплату или отсрочку платежа.
+            </p>
+
+            <h2 class="company-content-title" style="font-size: 28px; margin-top: 36px;">
+                5. Доставка и приёмка
+            </h2>
+            <p>
+                5.1. Доставка Товара осуществляется силами Продавца или
+                транспортной компанией по согласованию сторон.
+            </p>
+            <p>
+                5.2. Сроки доставки согласовываются при подтверждении заказа.
+            </p>
+            <p>
+                5.3. При приёмке Товара Покупатель обязан проверить
+                количество, ассортимент и качество Товара.
+            </p>
+
+            <h2 class="company-content-title" style="font-size: 28px; margin-top: 36px;">
+                6. Реквизиты Продавца
+            </h2>
+
+            {% if company_info %}
+            <dl class="company-legal-list" style="margin-top: 20px;">
+                {% if company_info.legal_name %}
+                <div class="company-legal-item">
+                    <dt>Наименование</dt>
+                    <dd>{{ company_info.legal_name }}</dd>
+                </div>
+                {% endif %}
+                {% if company_info.inn %}
+                <div class="company-legal-item">
+                    <dt>ИНН</dt>
+                    <dd>{{ company_info.inn }}</dd>
+                </div>
+                {% endif %}
+                {% if company_info.kpp %}
+                <div class="company-legal-item">
+                    <dt>КПП</dt>
+                    <dd>{{ company_info.kpp }}</dd>
+                </div>
+                {% endif %}
+                {% if company_info.ogrn %}
+                <div class="company-legal-item">
+                    <dt>ОГРН</dt>
+                    <dd>{{ company_info.ogrn }}</dd>
+                </div>
+                {% endif %}
+                {% if company_info.legal_address %}
+                <div class="company-legal-item">
+                    <dt>Юридический адрес</dt>
+                    <dd>{{ company_info.legal_address }}</dd>
+                </div>
+                {% endif %}
+                {% if company_info.bank_name %}
+                <div class="company-legal-item">
+                    <dt>Банк</dt>
+                    <dd>{{ company_info.bank_name }}</dd>
+                </div>
+                {% endif %}
+                {% if company_info.bik %}
+                <div class="company-legal-item">
+                    <dt>БИК</dt>
+                    <dd>{{ company_info.bik }}</dd>
+                </div>
+                {% endif %}
+                {% if company_info.payment_account %}
+                <div class="company-legal-item">
+                    <dt>Расчётный счёт</dt>
+                    <dd>{{ company_info.payment_account }}</dd>
+                </div>
+                {% endif %}
+                {% if company_info.correspondent_account %}
+                <div class="company-legal-item">
+                    <dt>Корр. счёт</dt>
+                    <dd>{{ company_info.correspondent_account }}</dd>
+                </div>
+                {% endif %}
+                {% if company_info.director_name %}
+                <div class="company-legal-item">
+                    <dt>{{ company_info.director_position|default:"Руководитель" }}</dt>
+                    <dd>{{ company_info.director_name }}</dd>
+                </div>
+                {% endif %}
+                {% if company_info.phone %}
+                <div class="company-legal-item">
+                    <dt>Телефон</dt>
+                    <dd>{{ company_info.phone }}</dd>
+                </div>
+                {% endif %}
+                {% if company_info.email %}
+                <div class="company-legal-item">
+                    <dt>Email</dt>
+                    <dd>{{ company_info.email }}</dd>
+                </div>
+                {% endif %}
+            </dl>
+            {% endif %}
+
+        </div>
+
+    </div>
+</section>
+
+{% endblock %}

@@ -1,0 +1,147 @@
+/* ========================================
+   Cookie Consent Banner — Brauni Food
+   Glassmorphism card, bottom-right corner.
+   Uses existing project design tokens.
+   ======================================== */
+
+.cookie-banner {
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    z-index: 9999;
+
+    width: min(440px, calc(100vw - 48px));
+    padding: 28px;
+
+    background: var(--color-white-16);
+    border: 1px solid var(--color-white-28);
+    border-radius: var(--radius-2xl);
+    box-shadow:
+        var(--shadow-glass),
+        0 0 0 1px rgba(255, 255, 255, 0.1);
+
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+
+    opacity: 1;
+    transform: translateY(0);
+    transition:
+        opacity var(--transition-slow),
+        transform var(--transition-slow);
+}
+
+.cookie-banner.is-hidden {
+    opacity: 0;
+    transform: translateY(16px);
+    pointer-events: none;
+}
+
+/* ---- Title ---- */
+.cookie-banner__title {
+    margin: 0 0 10px 0;
+    font-family: var(--font-family-base);
+    font-size: 20px;
+    font-weight: var(--font-weight-bold);
+    color: var(--color-primary);
+    line-height: 1.2;
+}
+
+/* ---- Text ---- */
+.cookie-banner__text {
+    margin: 0 0 22px 0;
+    font-family: var(--font-family-base);
+    font-size: 15px;
+    font-weight: var(--font-weight-normal);
+    color: var(--color-primary-74);
+    line-height: 1.5;
+}
+
+/* ---- Buttons row ---- */
+.cookie-banner__actions {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+/* ---- Primary: Принять ---- */
+.cookie-banner__btn--accept {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    height: 48px;
+    padding: 0 24px;
+    border: none;
+    border-radius: var(--radius-md);
+    background: var(--color-primary);
+    color: var(--color-white);
+    font-family: var(--font-family-base);
+    font-size: 15px;
+    font-weight: var(--font-weight-bold);
+    cursor: pointer;
+    box-shadow: var(--shadow-btn);
+    transition:
+        transform var(--transition-fast),
+        background var(--transition-fast),
+        box-shadow var(--transition-fast);
+}
+
+.cookie-banner__btn--accept:hover {
+    transform: translateY(-2px);
+    background: var(--color-primary-dark);
+    box-shadow: var(--shadow-btn-hover);
+}
+
+/* ---- Secondary: Подробнее ---- */
+.cookie-banner__btn--more {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    height: 48px;
+    padding: 0 20px;
+    border: 1.5px solid rgba(25, 22, 84, 0.18);
+    border-radius: var(--radius-md);
+    background: transparent;
+    color: var(--color-primary);
+    font-family: var(--font-family-base);
+    font-size: 15px;
+    font-weight: var(--font-weight-medium);
+    text-decoration: none;
+    cursor: pointer;
+    transition:
+        background var(--transition-fast),
+        border-color var(--transition-fast);
+}
+
+.cookie-banner__btn--more:hover {
+    background: rgba(25, 22, 84, 0.06);
+    border-color: rgba(25, 22, 84, 0.28);
+}
+
+/* ---- Mobile ---- */
+@media (max-width: 768px) {
+    .cookie-banner {
+        bottom: 16px;
+        right: 16px;
+        width: calc(100vw - 32px);
+        padding: 22px;
+        border-radius: var(--radius-xl);
+    }
+
+    .cookie-banner__title {
+        font-size: 18px;
+    }
+
+    .cookie-banner__text {
+        font-size: 14px;
+    }
+
+    .cookie-banner__actions {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .cookie-banner__btn--accept,
+    .cookie-banner__btn--more {
+        width: 100%;
+    }
+}

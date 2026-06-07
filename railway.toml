@@ -1,0 +1,7 @@
+# Railway deployment configuration
+[build]
+  builder = "nixpacks"
+  buildCommand = "cd frontend && npm ci && npm run build"
+
+[deploy]
+  startCommand = "cd backend && python manage.py migrate --noinput && python manage.py collectstatic --noinput && gunicorn config.wsgi:application --workers 3 --bind 0.0.0.0:${PORT:-8000}"

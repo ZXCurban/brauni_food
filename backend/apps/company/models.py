@@ -21,6 +21,7 @@ class CompanyInfo(models.Model):
         verbose_name="Главное изображение",
     )
 
+    # ---- Contacts ----
     phone = models.CharField(
         max_length=255,
         blank=True,
@@ -34,12 +35,8 @@ class CompanyInfo(models.Model):
 
     address = models.TextField(
         blank=True,
-        verbose_name="Адрес",
+        verbose_name="Фактический адрес",
     )
-
-    inn = models.CharField(max_length=32, blank=True, verbose_name="ИНН")
-
-    ogrn = models.CharField(max_length=32, blank=True, verbose_name="ОГРН")
 
     whatsapp_url = models.URLField(
         blank=True,
@@ -49,6 +46,68 @@ class CompanyInfo(models.Model):
     telegram_url = models.URLField(
         blank=True,
         verbose_name="Ссылка Telegram",
+    )
+
+    # ---- Legal requisites ----
+    legal_name = models.CharField(
+        max_length=500,
+        blank=True,
+        verbose_name="Полное юридическое наименование",
+        help_text="Например: ООО «Брауни Фуд»",
+    )
+
+    inn = models.CharField(max_length=32, blank=True, verbose_name="ИНН")
+
+    kpp = models.CharField(
+        max_length=32,
+        blank=True,
+        verbose_name="КПП",
+    )
+
+    ogrn = models.CharField(max_length=32, blank=True, verbose_name="ОГРН")
+
+    legal_address = models.TextField(
+        blank=True,
+        verbose_name="Юридический адрес",
+    )
+
+    director_name = models.CharField(
+        max_length=255,
+        blank=True,
+        verbose_name="ФИО руководителя",
+      help_text="Например: Иванов Иван Иванович",
+    )
+
+    director_position = models.CharField(
+        max_length=255,
+        blank=True,
+        default="Генеральный директор",
+        verbose_name="Должность руководителя",
+    )
+
+    # ---- Bank details ----
+    bank_name = models.CharField(
+        max_length=500,
+        blank=True,
+        verbose_name="Наименование банка",
+    )
+
+    bik = models.CharField(
+        max_length=32,
+        blank=True,
+        verbose_name="БИК",
+    )
+
+    payment_account = models.CharField(
+        max_length=50,
+        blank=True,
+        verbose_name="Расчётный счёт",
+    )
+
+    correspondent_account = models.CharField(
+        max_length=50,
+        blank=True,
+        verbose_name="Корреспондентский счёт",
     )
 
     is_active = models.BooleanField(
