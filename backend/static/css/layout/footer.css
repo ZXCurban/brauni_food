@@ -135,17 +135,19 @@
     .footer-container {
         width: calc(100% - 48px);
         display: grid;
-        grid-template-columns: 1fr 1fr;
-        grid-template-rows: auto auto;
+        grid-template-columns: auto 1fr;
         gap: 20px 24px;
         align-items: start;
     }
 
-    /* Logo + copy: top-left */
+    /* Logo + copy + documents: left column */
     .footer-left {
         grid-column: 1;
-        grid-row: 1;
-        gap: 8px;
+        gap: 12px;
+    }
+
+    .footer-left .footer-title {
+        margin-top: 4px;
     }
 
     .footer-logo {
@@ -156,12 +158,11 @@
         font-size: 13px;
     }
 
-    /* Documents: top-right */
+    /* Contacts + socials: right column */
     .footer-right {
         grid-column: 2;
-        grid-row: 1 / 3;
+        gap: 16px;
         align-items: flex-end;
-        gap: 14px;
         text-align: right;
     }
 
@@ -214,6 +215,10 @@
     .footer-contacts a,
     .footer-address,
     .footer-copy {
+        font-size: 12px;
+    }
+
+    .footer-title {
         font-size: 12px;
     }
 }

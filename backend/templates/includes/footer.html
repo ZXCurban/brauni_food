@@ -15,9 +15,6 @@
             <p class="footer-copy">
                 Брауни, {% now "Y" %}
             </p>
-        </div>
-
-        <div class="footer-right">
 
             <div class="footer-documents">
                 <div class="footer-title">Документы</div>
@@ -26,32 +23,11 @@
                 <a href="/offer/">Публичная оферта</a>
                 <a href="/returns/">Правила возврата</a>
             </div>
+        </div>
+
+        <div class="footer-right">
 
             {% if company_info %}
-
-                {% if company_info.telegram_url or company_info.whatsapp_url %}
-                <div class="footer-socials">
-
-                    {% if company_info.telegram_url %}
-                        <a href="{{ company_info.telegram_url }}" class="footer-social">
-                            <img
-                                src="{% static 'icons/telegram.svg' %}"
-                                alt="Telegram"
-                            >
-                        </a>
-                    {% endif %}
-
-                    {% if company_info.whatsapp_url %}
-                        <a href="{{ company_info.whatsapp_url }}" class="footer-social">
-                            <img
-                                src="{% static 'icons/whatsapp.svg' %}"
-                                alt="WhatsApp"
-                            >
-                        </a>
-                    {% endif %}
-
-                </div>
-                {% endif %}
 
                 <div class="footer-contacts">
 
@@ -80,6 +56,30 @@
                     {% endif %}
 
                 </div>
+
+                {% if company_info.telegram_url or company_info.whatsapp_url %}
+                <div class="footer-socials">
+
+                    {% if company_info.telegram_url %}
+                        <a href="{{ company_info.telegram_url }}" class="footer-social">
+                            <img
+                                src="{% static 'icons/telegram.svg' %}"
+                                alt="Telegram"
+                            >
+                        </a>
+                    {% endif %}
+
+                    {% if company_info.whatsapp_url %}
+                        <a href="{{ company_info.whatsapp_url }}" class="footer-social">
+                            <img
+                                src="{% static 'icons/whatsapp.svg' %}"
+                                alt="WhatsApp"
+                            >
+                        </a>
+                    {% endif %}
+
+                </div>
+                {% endif %}
 
             {% endif %}
 
