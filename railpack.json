@@ -1,6 +1,6 @@
 {
-  "runtime": {
-    "nodejs": "auto",
+  "packages": {
+    "node": "auto",
     "python": "auto"
   }
 }
