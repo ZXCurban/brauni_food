@@ -251,6 +251,10 @@
         font-size: 48px;
     }
 
+    .company-spiral-block {
+        margin-top: -60px;
+    }
+
     /* ---- SVG stays as full compositional background ---- */
     .company-spiral-svg {
         width: 100vw;
