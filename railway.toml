@@ -5,4 +5,4 @@
   buildCommand = "cd frontend && npm install && npm run build"
 
 [deploy]
-  startCommand = "cd backend && python manage.py migrate --noinput && python manage.py collectstatic --noinput && gunicorn config.wsgi:application --workers 3 --bind 0.0.0.0:${PORT:-8000}"
+  startCommand = "cd backend && python manage.py migrate --noinput && python manage.py collectstatic --noinput && if [ \"$RESTORE_DUMP\" = \"true\" ] && [ -f ../brauni.dump ]; then pg_restore --clean --if-exists --no-owner --no-acl -d \"$DATABASE_URL\" brauni.dump && echo 'Dump restored.'; fi && gunicorn config.wsgi:application --workers 3 --bind 0.0.0.0:${PORT:-8000}"
