@@ -4,14 +4,14 @@
 
 /* ---- Heading ---- */
 .company-heading-section {
-    padding: 150px 0 0 0;
+    padding: 60px 0 0 0;
 }
 
 .company-heading-title {
     margin: 0;
-    font-family: var(--font-family-base);
-    font-size: 120px;
-    font-weight: 800;
+    font-family: var(--font-family-bold);
+    font-size: 96px;
+    font-weight: var(--font-weight-bold);
     text-align: center;
 }
 
@@ -245,6 +245,10 @@
 @media (max-width: 768px) {
     .company-heading-section {
         padding: 48px 0 0 0;
+    }
+
+    .company-heading-title {
+        font-size: 48px;
     }
 
     /* ---- SVG stays as full compositional background ---- */

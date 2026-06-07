@@ -129,61 +129,91 @@
 /* ---- Footer responsive ---- */
 @media (max-width: 900px) {
     .site-footer {
-        padding: 40px 0 40px 0;
+        padding: 36px 0 36px 0;
     }
 
     .footer-container {
         width: calc(100% - 48px);
-        flex-direction: row;
-        align-items: flex-start;
-        justify-content: space-between;
-        gap: 24px;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: auto auto;
+        gap: 20px 24px;
+        align-items: start;
     }
 
+    /* Logo + copy: top-left */
     .footer-left {
-        gap: 16px;
+        grid-column: 1;
+        grid-row: 1;
+        gap: 8px;
     }
 
     .footer-logo {
-        width: 120px;
+        width: 100px;
     }
 
     .footer-copy {
-        font-size: 14px;
+        font-size: 13px;
     }
 
+    /* Documents: top-right */
     .footer-right {
+        grid-column: 2;
+        grid-row: 1 / 3;
         align-items: flex-end;
-        gap: 16px;
+        gap: 14px;
+        text-align: right;
+    }
+
+    .footer-documents {
+        gap: 4px;
+    }
+
+    .footer-documents a {
+        font-size: 13px;
     }
 
     .footer-socials {
-        gap: 14px;
+        gap: 12px;
+        justify-content: flex-end;
     }
 
     .footer-social img {
-        width: 30px;
-        height: 30px;
+        width: 28px;
+        height: 28px;
     }
 
     .footer-contacts {
-        gap: 8px;
+        gap: 6px;
         align-items: flex-end;
         text-align: right;
     }
 
     .footer-title {
-        font-size: 16px;
-        margin-bottom: 4px;
+        font-size: 14px;
+        margin-bottom: 2px;
+    }
+
+    .footer-contacts a,
+    .footer-address {
+        font-size: 13px;
+    }
+}
+
+@media (max-width: 480px) {
+    .footer-container {
+        width: calc(100% - 32px);
+        gap: 14px 16px;
+    }
+
+    .footer-logo {
+        width: 80px;
     }
 
     .footer-documents a,
     .footer-contacts a,
-    .footer-address {
-        font-size: 14px;
-    }
-
-    .footer-documents {
-        gap: 6px;
+    .footer-address,
+    .footer-copy {
+        font-size: 12px;
     }
 }

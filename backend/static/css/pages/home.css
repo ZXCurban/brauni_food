@@ -206,7 +206,7 @@
     .spiral-straight-button {
         pointer-events: auto;
         width: 100%;
-        max-width: 340px;
+        max-width: 340px; height: 44px; font-size: 14px;
     }
 }
 
@@ -396,13 +396,13 @@
         grid-template-columns: 1fr;
         align-items: end;
         justify-items: center;
-        padding: 20px 0 180px 0;
+        padding: 30px 0 220px 0;
     }
 
     /* ---- Image centered inside the spiral composition ---- */
     .spiral-curve-image {
         position: absolute;
-        inset: 50px 20px 140px 20px;
+        inset: 60px 20px 180px 20px;
         z-index: 4;
         overflow: hidden;
         border-radius: var(--radius-xl);
