@@ -4,25 +4,29 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
-        ('vacancies', '0001_initial'),
+        ("vacancies", "0001_initial"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='vacancy',
-            name='created_at',
-            field=models.DateTimeField(auto_now_add=True, verbose_name='Создана'),
+            model_name="vacancy",
+            name="created_at",
+            field=models.DateTimeField(auto_now_add=True, verbose_name="Создана"),
         ),
         migrations.AlterField(
-            model_name='vacancy',
-            name='slug',
-            field=models.SlugField(blank=True, help_text='Заполняется автоматически из названия. Можно изменить вручную.', unique=True, verbose_name='Slug'),
+            model_name="vacancy",
+            name="slug",
+            field=models.SlugField(
+                blank=True,
+                help_text="Заполняется автоматически из названия. Можно изменить вручную.",
+                unique=True,
+                verbose_name="Slug",
+            ),
         ),
         migrations.AlterField(
-            model_name='vacancy',
-            name='updated_at',
-            field=models.DateTimeField(auto_now=True, verbose_name='Обновлена'),
+            model_name="vacancy",
+            name="updated_at",
+            field=models.DateTimeField(auto_now=True, verbose_name="Обновлена"),
         ),
     ]

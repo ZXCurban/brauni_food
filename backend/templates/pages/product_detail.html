@@ -1,0 +1,140 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ product.name }} — Брауни Фуд{% endblock %}
+{% block meta_description %}{{ product.name }}{% if product.description %} — {{ product.description|truncatechars:120 }}{% endif %}. Цена: {{ product.price }} ₽. Брауни Фуд.{% endblock %}
+
+{% block og_tags %}
+{{ block.super }}
+<meta property="og:title" content="{{ product.name }} — Брауни Фуд">
+<meta property="og:description" content="{{ product.description|default:product.name|truncatechars:160 }}">
+<meta property="og:image" content="{{ product.image_url }}">
+<meta property="og:type" content="product">
+{% if product.price %}<meta property="product:price:amount" content="{{ product.price }}">{% endif %}
+<meta property="product:price:currency" content="RUB">
+{% endblock %}
+
+{% block structured_data %}
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "Product",
+    "name": "{{ product.name|escapejs }}",
+    "description": "{{ product.description|default:product.name|escapejs }}",
+    "image": "{{ product.image_url }}",
+    "category": "{{ product.category.name|escapejs }}",
+    {% if product.weight %}"weight": "{{ product.weight|escapejs }}",{% endif %}
+    "offers": {
+        "@type": "Offer",
+        "price": "{{ product.price }}",
+        "priceCurrency": "RUB",
+        "availability": "https://schema.org/InStock"
+    }
+}
+</script>
+{% endblock %}
+
+{% block content %}
+
+<section class="product-detail-section">
+
+    <div class="product-detail-container">
+
+        <a href="{% url 'products' %}" class="product-detail-back">
+            Каталог
+        </a>
+
+        <div class="product-detail-layout product-detail-layout--product">
+
+            <div class="product-detail-image-wrap">
+                <img
+                    src="{{ product.image_url }}"
+                    alt="{{ product.name }}"
+                    class="product-detail-image"
+                >
+            </div>
+
+            <div class="product-detail-content">
+
+                <a
+                    href="{% url 'category_detail' product.category.slug %}"
+                    class="product-detail-category"
+                >
+                    {{ product.category.name }}
+                </a>
+
+                <h1 class="product-detail-title">
+                    {{ product.name }}
+                </h1>
+
+                {% if product.description %}
+                    <p class="product-detail-description">
+                        {{ product.description }}
+                    </p>
+                {% endif %}
+
+                <div class="product-detail-meta">
+
+                    {% if product.weight %}
+                        <div class="product-detail-meta-item">
+                            <span>Вес</span>
+                            <strong>{{ product.weight }}</strong>
+                        </div>
+                    {% endif %}
+
+                    {% if product.shelf_life %}
+                        <div class="product-detail-meta-item">
+                            <span>Срок</span>
+                            <strong>{{ product.shelf_life }}</strong>
+                        </div>
+                    {% endif %}
+
+                    {% if product.storage_temperature %}
+                        <div class="product-detail-meta-item">
+                            <span>Хранение</span>
+                            <strong>{{ product.storage_temperature }}</strong>
+                        </div>
+                    {% endif %}
+
+                    <div class="product-detail-meta-item">
+                        <span>Новинка</span>
+                        <strong>{{ product.is_new|yesno:"Да,Нет" }}</strong>
+                    </div>
+
+                    <div class="product-detail-meta-item">
+                        <span>Популярный товар</span>
+                        <strong>{{ product.is_popular|yesno:"Да,Нет" }}</strong>
+                    </div>
+
+                </div>
+
+                {% if product.ingredients %}
+                    <div class="product-detail-ingredients">
+                        <h2>Состав</h2>
+                        <p>{{ product.ingredients }}</p>
+                    </div>
+                {% endif %}
+
+                <div class="product-detail-footer">
+
+                    <div class="product-detail-price">
+                        {{ product.price }} ₽
+                    </div>
+
+                    <a
+                        href="{% url 'category_detail' product.category.slug %}"
+                        class="product-detail-button"
+                    >
+                        Другие товары категории
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+{% endblock %}

@@ -1,14 +1,19 @@
 from django.contrib import admin
-from django.db import models
-from django.forms import Textarea
 
-from apps.admin_utils import boolean_badge, image_preview, message_for_update
+from apps.admin_utils import (
+    ContentTextareaMixin,
+    boolean_badge,
+    image_preview,
+    message_for_update,
+)
 
 from .models import (
     CompanyFeature,
     CompanyGalleryImage,
     CompanyInfo,
     CompanySection,
+    HeroSlide,
+    HomeBlock,
 )
 
 
@@ -24,22 +29,20 @@ def deactivate_items(modeladmin, request, queryset):
     message_for_update(modeladmin, request, updated, "записи отключены")
 
 
-class ContentTextareaMixin:
-    formfield_overrides = {
-        models.TextField: {
-            "widget": Textarea(attrs={"rows": 5}),
-        },
-    }
-
-
 @admin.register(CompanyInfo)
 class CompanyInfoAdmin(ContentTextareaMixin, admin.ModelAdmin):
     list_display = (
         "title",
         "phone",
         "email",
-        "activity",
+        "status_badge",
     )
+
+    def has_add_permission(self, request):
+        if CompanyInfo.objects.exists():
+            return False
+        return super().has_add_permission(request)
+
     search_fields = (
         "title",
         "short_description",
@@ -95,13 +98,117 @@ class CompanyInfoAdmin(ContentTextareaMixin, admin.ModelAdmin):
         return image_preview(obj, field_name="hero_image", width=360, height=230)
 
     @admin.display(description="Статус", ordering="is_active")
-    def activity(self, obj):
+    def status_badge(self, obj):
+        return boolean_badge(obj.is_active)
+
+
+@admin.register(HomeBlock)
+class HomeBlockAdmin(ContentTextareaMixin, admin.ModelAdmin):
+    list_display = ("__str__", "status_badge")
+    readonly_fields = ("straight_preview", "curve_preview")
+    save_on_top = True
+    fieldsets = (
+        (
+            "Прямая спираль (Brauni для бизнеса)",
+            {
+                "fields": (
+                    "straight_title",
+                    "straight_description",
+                    "straight_button_text",
+                    "straight_button_url",
+                    "straight_image",
+                    "straight_preview",
+                )
+            },
+        ),
+        (
+            "Изогнутая спираль (Работа в Brauni)",
+            {
+                "fields": (
+                    "curve_title",
+                    "curve_description",
+                    "curve_button_text",
+                    "curve_button_url",
+                    "curve_image",
+                    "curve_preview",
+                )
+            },
+        ),
+        (
+            "Настройки",
+            {
+                "fields": ("is_active",),
+            },
+        ),
+    )
+
+    @admin.display(description="Изображение (прямая)")
+    def straight_preview(self, obj):
+        return image_preview(obj, field_name="straight_image", width=320, height=220)
+
+    @admin.display(description="Изображение (изогнутая)")
+    def curve_preview(self, obj):
+        return image_preview(obj, field_name="curve_image", width=320, height=220)
+
+    @admin.display(description="Статус", ordering="is_active")
+    def status_badge(self, obj):
         return boolean_badge(obj.is_active)
 
     def has_add_permission(self, request):
-        if CompanyInfo.objects.exists():
+        if HomeBlock.objects.exists():
             return False
         return super().has_add_permission(request)
+
+
+@admin.register(HeroSlide)
+class HeroSlideAdmin(ContentTextareaMixin, admin.ModelAdmin):
+    list_display = (
+        "preview",
+        "title",
+        "sort_order",
+        "status_badge",
+        "is_active",
+    )
+    list_display_links = ("preview", "title")
+    list_editable = ("sort_order", "is_active")
+    list_filter = ("is_active",)
+    search_fields = ("title", "description", "button_text")
+    readonly_fields = ("preview_large",)
+    ordering = ("sort_order", "title")
+    list_per_page = 25
+    actions = (activate_items, deactivate_items)
+    save_on_top = True
+    autocomplete_fields = ("link_category",)
+    fieldsets = (
+        (
+            "Слайд карусели",
+            {
+                "fields": (
+                    "title",
+                    "description",
+                    "button_text",
+                    "link_category",
+                    "button_url",
+                    "image",
+                    "preview_large",
+                    "sort_order",
+                    "is_active",
+                )
+            },
+        ),
+    )
+
+    @admin.display(description="Превью")
+    def preview(self, obj):
+        return image_preview(obj)
+
+    @admin.display(description="Изображение")
+    def preview_large(self, obj):
+        return image_preview(obj, width=360, height=240)
+
+    @admin.display(description="Статус", ordering="is_active")
+    def status_badge(self, obj):
+        return boolean_badge(obj.is_active)
 
 
 @admin.register(CompanyFeature)
@@ -110,7 +217,7 @@ class CompanyFeatureAdmin(ContentTextareaMixin, admin.ModelAdmin):
         "title",
         "icon",
         "order",
-        "activity",
+        "status_badge",
         "is_active",
     )
     list_editable = ("order", "is_active")
@@ -136,7 +243,7 @@ class CompanyFeatureAdmin(ContentTextareaMixin, admin.ModelAdmin):
     )
 
     @admin.display(description="Статус", ordering="is_active")
-    def activity(self, obj):
+    def status_badge(self, obj):
         return boolean_badge(obj.is_active)
 
 
@@ -147,7 +254,7 @@ class CompanySectionAdmin(ContentTextareaMixin, admin.ModelAdmin):
         "title",
         "order",
         "image_left",
-        "activity",
+        "status_badge",
         "is_active",
     )
     list_display_links = ("preview", "title")
@@ -185,7 +292,7 @@ class CompanySectionAdmin(ContentTextareaMixin, admin.ModelAdmin):
         return image_preview(obj, width=320, height=220)
 
     @admin.display(description="Статус", ordering="is_active")
-    def activity(self, obj):
+    def status_badge(self, obj):
         return boolean_badge(obj.is_active)
 
 
@@ -195,7 +302,7 @@ class CompanyGalleryImageAdmin(admin.ModelAdmin):
         "preview",
         "title",
         "order",
-        "activity",
+        "status_badge",
         "is_active",
     )
     list_display_links = ("preview", "title")
@@ -231,5 +338,5 @@ class CompanyGalleryImageAdmin(admin.ModelAdmin):
         return image_preview(obj, width=320, height=220)
 
     @admin.display(description="Статус", ordering="is_active")
-    def activity(self, obj):
+    def status_badge(self, obj):
         return boolean_badge(obj.is_active)

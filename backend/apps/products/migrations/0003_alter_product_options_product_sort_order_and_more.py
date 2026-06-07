@@ -5,90 +5,113 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
-        ('categories', '0002_alter_category_options_category_is_active_and_more'),
-        ('products', '0002_product_ingredients_product_is_popular_and_more'),
+        ("categories", "0002_alter_category_options_category_is_active_and_more"),
+        ("products", "0002_product_ingredients_product_is_popular_and_more"),
     ]
 
     operations = [
         migrations.AlterModelOptions(
-            name='product',
-            options={'ordering': ['sort_order', 'name'], 'verbose_name': 'Товар', 'verbose_name_plural': 'Товары'},
+            name="product",
+            options={
+                "ordering": ["sort_order", "name"],
+                "verbose_name": "Товар",
+                "verbose_name_plural": "Товары",
+            },
         ),
         migrations.AddField(
-            model_name='product',
-            name='sort_order',
-            field=models.PositiveIntegerField(default=0, help_text='Чем меньше число, тем выше товар в списке.', verbose_name='Порядок'),
+            model_name="product",
+            name="sort_order",
+            field=models.PositiveIntegerField(
+                default=0,
+                help_text="Чем меньше число, тем выше товар в списке.",
+                verbose_name="Порядок",
+            ),
         ),
         migrations.AlterField(
-            model_name='product',
-            name='category',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='products', to='categories.category', verbose_name='Категория'),
+            model_name="product",
+            name="category",
+            field=models.ForeignKey(
+                on_delete=django.db.models.deletion.CASCADE,
+                related_name="products",
+                to="categories.category",
+                verbose_name="Категория",
+            ),
         ),
         migrations.AlterField(
-            model_name='product',
-            name='created_at',
-            field=models.DateTimeField(auto_now_add=True, verbose_name='Создан'),
+            model_name="product",
+            name="created_at",
+            field=models.DateTimeField(auto_now_add=True, verbose_name="Создан"),
         ),
         migrations.AlterField(
-            model_name='product',
-            name='description',
-            field=models.TextField(blank=True, verbose_name='Описание'),
+            model_name="product",
+            name="description",
+            field=models.TextField(blank=True, verbose_name="Описание"),
         ),
         migrations.AlterField(
-            model_name='product',
-            name='image',
-            field=models.ImageField(upload_to='products/', verbose_name='Изображение'),
+            model_name="product",
+            name="image",
+            field=models.ImageField(upload_to="products/", verbose_name="Изображение"),
         ),
         migrations.AlterField(
-            model_name='product',
-            name='ingredients',
-            field=models.TextField(blank=True, verbose_name='Состав'),
+            model_name="product",
+            name="ingredients",
+            field=models.TextField(blank=True, verbose_name="Состав"),
         ),
         migrations.AlterField(
-            model_name='product',
-            name='is_new',
-            field=models.BooleanField(default=False, verbose_name='Новинка'),
+            model_name="product",
+            name="is_new",
+            field=models.BooleanField(default=False, verbose_name="Новинка"),
         ),
         migrations.AlterField(
-            model_name='product',
-            name='is_popular',
-            field=models.BooleanField(default=False, verbose_name='Популярный'),
+            model_name="product",
+            name="is_popular",
+            field=models.BooleanField(default=False, verbose_name="Популярный"),
         ),
         migrations.AlterField(
-            model_name='product',
-            name='name',
-            field=models.CharField(max_length=255, verbose_name='Название'),
+            model_name="product",
+            name="name",
+            field=models.CharField(max_length=255, verbose_name="Название"),
         ),
         migrations.AlterField(
-            model_name='product',
-            name='price',
-            field=models.DecimalField(decimal_places=2, max_digits=10, verbose_name='Цена'),
+            model_name="product",
+            name="price",
+            field=models.DecimalField(
+                decimal_places=2, max_digits=10, verbose_name="Цена"
+            ),
         ),
         migrations.AlterField(
-            model_name='product',
-            name='shelf_life',
-            field=models.CharField(blank=True, max_length=100, verbose_name='Срок годности'),
+            model_name="product",
+            name="shelf_life",
+            field=models.CharField(
+                blank=True, max_length=100, verbose_name="Срок годности"
+            ),
         ),
         migrations.AlterField(
-            model_name='product',
-            name='slug',
-            field=models.SlugField(blank=True, help_text='Заполняется автоматически из названия. Можно изменить вручную.', unique=True, verbose_name='Slug'),
+            model_name="product",
+            name="slug",
+            field=models.SlugField(
+                blank=True,
+                help_text="Заполняется автоматически из названия. Можно изменить вручную.",
+                unique=True,
+                verbose_name="Slug",
+            ),
         ),
         migrations.AlterField(
-            model_name='product',
-            name='storage_temperature',
-            field=models.CharField(blank=True, max_length=100, verbose_name='Температура хранения'),
+            model_name="product",
+            name="storage_temperature",
+            field=models.CharField(
+                blank=True, max_length=100, verbose_name="Температура хранения"
+            ),
         ),
         migrations.AlterField(
-            model_name='product',
-            name='updated_at',
-            field=models.DateTimeField(auto_now=True, verbose_name='Обновлён'),
+            model_name="product",
+            name="updated_at",
+            field=models.DateTimeField(auto_now=True, verbose_name="Обновлён"),
         ),
         migrations.AlterField(
-            model_name='product',
-            name='weight',
-            field=models.CharField(blank=True, max_length=100, verbose_name='Вес'),
+            model_name="product",
+            name="weight",
+            field=models.CharField(blank=True, max_length=100, verbose_name="Вес"),
         ),
     ]

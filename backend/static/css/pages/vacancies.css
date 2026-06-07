@@ -1,0 +1,111 @@
+/* ========================================
+   Vacancies Page — responsive overrides
+   Tailwind classes provide desktop styling;
+   this file adds responsive scaling.
+   ======================================== */
+
+/* Container for the vacancies page */
+.container-custom {
+    width: var(--container-default);
+    margin: 0 auto;
+}
+
+@media (max-width: 768px) {
+    .container-custom {
+        width: calc(100% - 32px);
+    }
+}
+
+/* ---- Responsive overrides for Tailwind classes ---- */
+
+@media (max-width: 900px) {
+    .vacancies-page .text-6xl {
+        font-size: 42px !important;
+    }
+
+    .vacancies-page .py-24 {
+        padding-top: 64px !important;
+        padding-bottom: 64px !important;
+    }
+
+    .vacancies-page .mt-16 {
+        margin-top: 40px !important;
+    }
+
+    .vacancies-page .gap-10 {
+        gap: 24px !important;
+    }
+}
+
+@media (max-width: 768px) {
+    .vacancies-page .text-6xl {
+        font-size: 34px !important;
+    }
+
+    .vacancies-page .py-24 {
+        padding-top: 48px !important;
+        padding-bottom: 48px !important;
+    }
+
+    .vacancies-page .mt-16 {
+        margin-top: 32px !important;
+    }
+
+    .vacancies-page .gap-10 {
+        gap: 20px !important;
+    }
+
+    /* Vacancy cards */
+    .vacancies-page .p-10 {
+        padding: 20px !important;
+    }
+
+    .vacancies-page .rounded-\[32px\] {
+        border-radius: 20px !important;
+    }
+
+    .vacancies-page .text-3xl {
+        font-size: 20px !important;
+    }
+
+    .vacancies-page .gap-6 {
+        gap: 12px !important;
+    }
+
+    .vacancies-page .px-5 {
+        padding-left: 14px !important;
+        padding-right: 14px !important;
+    }
+
+    .vacancies-page .py-3 {
+        padding-top: 8px !important;
+        padding-bottom: 8px !important;
+    }
+}
+
+@media (max-width: 480px) {
+    .vacancies-page .text-6xl {
+        font-size: 28px !important;
+    }
+
+    .vacancies-page .py-24 {
+        padding-top: 36px !important;
+        padding-bottom: 36px !important;
+    }
+
+    .vacancies-page .mt-16 {
+        margin-top: 24px !important;
+    }
+
+    .vacancies-page .gap-10 {
+        gap: 16px !important;
+    }
+
+    .vacancies-page .p-10 {
+        padding: 16px !important;
+    }
+
+    .vacancies-page .text-3xl {
+        font-size: 18px !important;
+    }
+}

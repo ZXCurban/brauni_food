@@ -1,0 +1,161 @@
+/* ========================================
+   Footer — Brauni Food
+   ======================================== */
+
+.site-footer {
+    position: relative;
+    width: 100%;
+    padding: 110px 0 70px 0;
+    background: var(--color-accent);
+    overflow: hidden;
+}
+
+.footer-container {
+    width: var(--container-narrow);
+    margin: 0 auto;
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 80px;
+}
+
+.footer-left {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+}
+
+.footer-logo {
+    width: 240px;
+    height: auto;
+}
+
+.footer-copy {
+    font-size: var(--font-size-lg);
+    font-weight: var(--font-weight-normal);
+    color: var(--color-white);
+    opacity: 0.8;
+}
+
+.footer-right {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--space-3xl);
+}
+
+.footer-socials {
+    display: flex;
+    align-items: center;
+    gap: var(--space-xl);
+}
+
+.footer-social {
+    transition:
+        transform var(--transition-normal),
+        opacity var(--transition-normal);
+}
+
+.footer-social:hover {
+    transform: translateY(-3px);
+    opacity: 0.8;
+}
+
+.footer-social img {
+    width: 44px;
+    height: 44px;
+    object-fit: contain;
+}
+
+.footer-contacts {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-md);
+}
+
+.footer-title {
+    font-size: var(--font-size-2xl);
+    font-weight: var(--font-weight-bold);
+    color: var(--color-white);
+    margin-bottom: 10px;
+}
+
+.footer-contacts a,
+.footer-address {
+    color: var(--color-white);
+    text-decoration: none;
+    font-size: var(--font-size-xl);
+    font-weight: var(--font-weight-normal);
+}
+
+.footer-address {
+    line-height: 1.35;
+}
+
+.footer-contacts a {
+    transition:
+        opacity var(--transition-normal),
+        transform var(--transition-normal);
+}
+
+.footer-contacts a:hover {
+    opacity: 0.8;
+    transform: translateX(4px);
+}
+
+/* ---- Footer responsive ---- */
+@media (max-width: 900px) {
+    .site-footer {
+        padding: 40px 0 40px 0;
+    }
+
+    .footer-container {
+        width: calc(100% - 48px);
+        flex-direction: row;
+        align-items: flex-start;
+        justify-content: space-between;
+        gap: 24px;
+    }
+
+    .footer-left {
+        gap: 16px;
+    }
+
+    .footer-logo {
+        width: 120px;
+    }
+
+    .footer-copy {
+        font-size: 14px;
+    }
+
+    .footer-right {
+        align-items: flex-end;
+        gap: 16px;
+    }
+
+    .footer-socials {
+        gap: 14px;
+    }
+
+    .footer-social img {
+        width: 30px;
+        height: 30px;
+    }
+
+    .footer-contacts {
+        gap: 8px;
+        align-items: flex-end;
+        text-align: right;
+    }
+
+    .footer-title {
+        font-size: 16px;
+        margin-bottom: 4px;
+    }
+
+    .footer-contacts a,
+    .footer-address {
+        font-size: 14px;
+    }
+}

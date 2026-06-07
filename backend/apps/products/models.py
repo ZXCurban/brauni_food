@@ -1,14 +1,16 @@
 from django.db import models
+from django.urls import reverse
 from apps.admin_utils import validate_image
+from apps.mixins import ImageURLMixin
 
 from apps.categories.models import Category
 
 
-class Product(models.Model):
+class Product(ImageURLMixin, models.Model):
     category = models.ForeignKey(
         Category,
         on_delete=models.CASCADE,
-        related_name='products',
+        related_name="products",
         verbose_name="Категория",
     )
 
@@ -25,9 +27,7 @@ class Product(models.Model):
     )
 
     image = models.ImageField(
-        upload_to='products/',
-        verbose_name="Изображение",
-        validators=[validate_image]
+        upload_to="products/", verbose_name="Изображение", validators=[validate_image]
     )
 
     description = models.TextField(
@@ -93,16 +93,10 @@ class Product(models.Model):
     class Meta:
         verbose_name = "Товар"
         verbose_name_plural = "Товары"
-        ordering = ['sort_order', 'name']
+        ordering = ["sort_order", "name"]
 
     def __str__(self):
         return self.name
-    
-    @property
-    def image_url(self):
 
-        if self.image:
-            return self.image.url
-
-        return '/static/images/placeholders/placeholder.png'
-
+    def get_absolute_url(self):
+        return reverse("product_detail", kwargs={"slug": self.slug})

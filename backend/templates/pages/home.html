@@ -1,11 +1,86 @@
 {% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Брауни Фуд — десерты и гастрономия для бизнеса{% endblock %}
+{% block meta_description %}Брауни Фуд — готовый ассортимент десертов, сэндвичей и гастрономии для витрин и кофеен. Собираем стабильную линейку под ежедневные продажи.{% endblock %}
 
 {% block content %}
 
-    {% include 'sections/hero.html' with title='Категория' description='' button_text='Подробнее' button_url='/products/' %}
+    {% include 'sections/hero.html' %}
+
+    <!-- ============================================
+         SPIRAL STRAIGHT BLOCK
+    ============================================ -->
+
+    <div class="spiral-straight-block">
+
+        <div class="spiral-straight-bg">
+            <img
+                src="{% static 'images/backgrounds/spiral_straight.svg' %}"
+                alt=""
+                class="spiral-straight-svg"
+            >
+        </div>
+
+        <div class="spiral-straight-content">
+
+            <div class="spiral-straight-text">
+
+                <h2 class="spiral-straight-title">
+                    {% if home_block %}
+                        {{ home_block.straight_title|default:"Брауни для бизнеса" }}
+                    {% else %}
+                        Брауни для бизнеса
+                    {% endif %}
+                </h2>
+
+                <p class="spiral-straight-description">
+                    {% if home_block %}
+                        {{ home_block.straight_description|default:"Готовый ассортимент для витрин и кофеен. Собираем стабильную линейку десертов, сэндвичей и гастрономии под ежедневные продажи." }}
+                    {% else %}
+                        Готовый ассортимент для витрин и кофеен. Собираем стабильную линейку десертов, сэндвичей и гастрономии под ежедневные продажи.
+                    {% endif %}
+                </p>
+
+                <a
+                    href="{{ home_block.straight_button_url|default:'/products/' }}"
+                    class="spiral-straight-button"
+                >
+                    {% if home_block %}
+                        {{ home_block.straight_button_text|default:"Смотреть каталог" }}
+                    {% else %}
+                        Смотреть каталог
+                    {% endif %}
+                </a>
+
+            </div>
+
+            <div class="spiral-straight-image">
+                {% if home_block and home_block.straight_image %}
+                    <img
+                        src="{{ home_block.straight_image.url }}"
+                        alt=""
+                        class="spiral-straight-img"
+                        loading="lazy"
+                        decoding="async"
+                    >
+                {% else %}
+                    <img
+                        src="{% static 'images/placeholders/placeholder.png' %}"
+                        alt=""
+                        class="spiral-straight-img"
+                        loading="lazy"
+                        decoding="async"
+                    >
+                {% endif %}
+            </div>
+
+        </div>
+
+    </div>
 
     {% include 'sections/featured_products.html' %}
 
-    {% include 'sections/vacancies_section.html' %}
+    {% include 'sections/spiral_curve.html' %}
 
 {% endblock %}

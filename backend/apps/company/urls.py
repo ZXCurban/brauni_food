@@ -4,10 +4,9 @@ from .views import CompanyPageView
 
 
 urlpatterns = [
-
     path(
-        '',
+        "",
         CompanyPageView.as_view(),
-        name='company',
+        name="company",
     ),
 ]

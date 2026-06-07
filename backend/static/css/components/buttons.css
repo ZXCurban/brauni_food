@@ -1,0 +1,124 @@
+/* ========================================
+   Buttons — shared CTA & action patterns
+   ======================================== */
+
+/* ---- Base button ---- */
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    font-size: var(--font-size-lg);
+    font-weight: var(--font-weight-bold);
+    transition:
+        transform var(--transition-fast),
+        background var(--transition-fast),
+        box-shadow var(--transition-fast);
+}
+
+/* ---- Primary (dark) ---- */
+.btn-primary {
+    background: var(--color-primary);
+    color: var(--color-white);
+}
+
+.btn-primary:hover {
+    transform: translateY(-2px);
+    background: var(--color-primary-dark);
+}
+
+/* ---- White button (on accent/spiral bg) ---- */
+.btn-white {
+    background: var(--color-white);
+    color: var(--color-primary);
+}
+
+.btn-white:hover {
+    transform: translateY(-2px);
+    background: var(--color-off-white);
+}
+
+/* ---- Sizes ---- */
+.btn--sm {
+    min-height: 44px;
+    padding: 0 var(--space-lg);
+    border-radius: var(--radius-sm);
+    font-size: var(--font-size-base);
+}
+
+.btn--md {
+    min-height: 52px;
+    padding: 0 var(--space-xl);
+    border-radius: var(--radius-md);
+    font-size: var(--font-size-md);
+}
+
+.btn--lg {
+    height: 54px;
+    padding: 0 var(--space-2xl);
+    border-radius: var(--radius-md);
+    font-size: var(--font-size-lg);
+}
+
+.btn--xl {
+    height: 56px;
+    padding: 0 var(--space-2xl);
+    border-radius: var(--radius-md);
+    font-size: var(--font-size-lg);
+}
+
+/* ---- Shadow modifier ---- */
+.btn--shadow {
+    box-shadow: var(--shadow-btn);
+}
+
+.btn--shadow:hover {
+    box-shadow: var(--shadow-btn-hover);
+}
+
+/* ---- Full-width on mobile ---- */
+@media (max-width: 768px) {
+    .btn--mobile-full {
+        width: 100%;
+        justify-content: center;
+    }
+}
+
+/* ========================================
+   Hero overlay button (gradient variant)
+   ======================================== */
+
+.hero-overlay-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    height: 54px;
+    padding: 0 var(--space-2xl);
+    border-radius: var(--radius-md);
+    text-decoration: none;
+    font-size: var(--font-size-lg);
+    font-weight: var(--font-weight-bold);
+    background: linear-gradient(90deg, var(--color-accent), var(--color-primary));
+    color: var(--color-white);
+    box-shadow: var(--shadow-hero);
+    cursor: pointer;
+    position: relative;
+    z-index: 30;
+    pointer-events: auto;
+    isolation: isolate;
+    transition:
+        transform var(--transition-fast),
+        box-shadow var(--transition-fast);
+}
+
+.hero-overlay-button:hover {
+    transform: translateY(-2px);
+    background: linear-gradient(90deg, var(--color-accent), var(--color-primary-dark));
+    box-shadow: var(--shadow-hero-hover);
+}
+
+@media (max-width: 768px) {
+    .hero-overlay-button {
+        width: 100%;
+    }
+}

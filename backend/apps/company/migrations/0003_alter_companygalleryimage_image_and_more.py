@@ -5,20 +5,27 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
-        ('company', '0002_alter_companygalleryimage_options_and_more'),
+        ("company", "0002_alter_companygalleryimage_options_and_more"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='companygalleryimage',
-            name='image',
-            field=models.ImageField(upload_to='company/gallery/', validators=[apps.admin_utils.validate_image], verbose_name='Изображение'),
+            model_name="companygalleryimage",
+            name="image",
+            field=models.ImageField(
+                upload_to="company/gallery/",
+                validators=[apps.admin_utils.validate_image],
+                verbose_name="Изображение",
+            ),
         ),
         migrations.AlterField(
-            model_name='companysection',
-            name='image',
-            field=models.ImageField(upload_to='company/sections/', validators=[apps.admin_utils.validate_image], verbose_name='Изображение'),
+            model_name="companysection",
+            name="image",
+            field=models.ImageField(
+                upload_to="company/sections/",
+                validators=[apps.admin_utils.validate_image],
+                verbose_name="Изображение",
+            ),
         ),
     ]

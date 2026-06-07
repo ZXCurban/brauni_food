@@ -1,47 +1,71 @@
 {% load static %}
-
 <!DOCTYPE html>
-
 <html lang="ru">
-
 <head>
-
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0"
-    >
+    <title>{% block title %}Брауни Фуд{% endblock %}</title>
 
-    <title>
-        Brauni Food
-    </title>
+    <meta name="description" content="{% block meta_description %}Брауни Фуд — производство десертов, сэндвичей и гастрономии для витрин и кофеен. Готовый ассортимент для ежедневных продаж.{% endblock %}">
 
-    <link
-        rel="stylesheet"
-        href="{% static 'css/main.css' %}"
-    >
+    {% block og_tags %}
+    <meta property="og:title" content="Брауни Фуд">
+    <meta property="og:description" content="Производство десертов, сэндвичей и гастрономии для витрин и кофеен.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="{{ request.build_absolute_uri }}">
+    <meta property="og:site_name" content="Брауни Фуд">
+    <meta property="og:locale" content="ru_RU">
+    {% endblock %}
 
+    <link rel="canonical" href="{% block canonical %}{{ request.build_absolute_uri }}{% endblock %}">
+
+    <link rel="stylesheet" href="{% static 'css/main.css' %}">
+    <link rel="stylesheet" href="{% static 'css/brauni-tailwind.css' %}">
+
+    <link rel="icon" href="{% static 'images/logo/logo.svg' %}" type="image/svg+xml">
+
+    {% block extra_head %}{% endblock %}
 </head>
-
 <body>
+
+    {% block structured_data %}
+    {% if company_info %}
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "{{ company_info.title|default:'Брауни Фуд' }}",
+        "url": "{{ request.build_absolute_uri|slice:':-1' }}{% url 'home' %}",
+        "description": "{{ company_info.short_description|default:'Производство десертов, сэндвичей и гастрономии'|escapejs }}",
+        "email": "{{ company_info.email|default:'' }}",
+        "telephone": "{{ company_info.phone|default:'' }}",
+        "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "{{ company_info.address|default:'' }}"
+        }
+        {% if company_info.inn or company_info.ogrn %},
+        "identifier": [
+            {% if company_info.inn %}{"@type": "PropertyValue", "propertyID": "INN", "value": "{{ company_info.inn }}"}{% endif %}
+            {% if company_info.inn and company_info.ogrn %},{% endif %}
+            {% if company_info.ogrn %}{"@type": "PropertyValue", "propertyID": "OGRN", "value": "{{ company_info.ogrn }}"}{% endif %}
+        ]{% endif %}
+    }
+    </script>
+    {% endif %}
+    {% endblock %}
 
     {% include 'includes/header.html' %}
 
     <main>
-
         {% block content %}
         {% endblock %}
-
     </main>
 
     {% include 'includes/footer.html' %}
 
-    <script
-        type="module"
-        src="{% static 'js/main.js' %}"
-    ></script>
+    <script type="module" src="{% static 'js/main.js' %}"></script>
 
+    {% block extra_scripts %}{% endblock %}
 </body>
-
 </html>

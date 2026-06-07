@@ -1,9 +1,9 @@
 from django.db import models
 from apps.admin_utils import validate_image
+from apps.mixins import ImageURLMixin
 
 
-class Vacancy(models.Model):
-
+class Vacancy(ImageURLMixin, models.Model):
     class SalaryType(models.TextChoices):
         FIXED = "fixed", "Фиксированная"
         PERCENT = "percent", "Сдельная"
@@ -13,10 +13,7 @@ class Vacancy(models.Model):
         PART = "part", "Неполная занятость"
         FLEX = "flex", "Свободный график"
 
-    title = models.CharField(
-        max_length=255,
-        verbose_name="Название вакансии"
-    )
+    title = models.CharField(max_length=255, verbose_name="Название вакансии")
 
     slug = models.SlugField(
         unique=True,
@@ -25,48 +22,33 @@ class Vacancy(models.Model):
         help_text="Заполняется автоматически из названия. Можно изменить вручную.",
     )
 
-    short_description = models.TextField(
-        verbose_name="Краткое описание"
-    )
+    short_description = models.TextField(verbose_name="Краткое описание")
 
-    requirements = models.TextField(
-        verbose_name="Условия и обязанности"
-    )
+    requirements = models.TextField(verbose_name="Условия и обязанности")
 
-    schedule = models.CharField(
-        max_length=255,
-        verbose_name="График работы"
-    )
+    schedule = models.CharField(max_length=255, verbose_name="График работы")
 
     salary_type = models.CharField(
         max_length=20,
         choices=SalaryType.choices,
         default=SalaryType.FIXED,
-        verbose_name="Тип зарплаты"
+        verbose_name="Тип зарплаты",
     )
 
     employment_type = models.CharField(
         max_length=20,
         choices=EmploymentType.choices,
         default=EmploymentType.FULL,
-        verbose_name="Тип занятости"
+        verbose_name="Тип занятости",
     )
 
-    salary = models.CharField(
-        max_length=255,
-        verbose_name="Зарплата"
-    )
+    salary = models.CharField(max_length=255, verbose_name="Зарплата")
 
     image = models.ImageField(
-        upload_to="vacancies/",
-        verbose_name="Изображение",
-        validators=[validate_image]
+        upload_to="vacancies/", verbose_name="Изображение", validators=[validate_image]
     )
 
-    is_active = models.BooleanField(
-        default=True,
-        verbose_name="Активна"
-    )
+    is_active = models.BooleanField(default=True, verbose_name="Активна")
 
     created_at = models.DateTimeField(
         auto_now_add=True,
@@ -85,11 +67,3 @@ class Vacancy(models.Model):
 
     def __str__(self):
         return self.title
-
-    @property
-    def image_url(self):
-
-        if self.image:
-            return self.image.url
-
-        return '/static/images/placeholders/placeholder.png'

@@ -5,15 +5,18 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
-        ('products', '0003_alter_product_options_product_sort_order_and_more'),
+        ("products", "0003_alter_product_options_product_sort_order_and_more"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='product',
-            name='image',
-            field=models.ImageField(upload_to='products/', validators=[apps.admin_utils.validate_image], verbose_name='Изображение'),
+            model_name="product",
+            name="image",
+            field=models.ImageField(
+                upload_to="products/",
+                validators=[apps.admin_utils.validate_image],
+                verbose_name="Изображение",
+            ),
         ),
     ]

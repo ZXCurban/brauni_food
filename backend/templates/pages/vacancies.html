@@ -1,8 +1,11 @@
 {% extends 'base.html' %}
 
+{% block title %}Вакансии — Брауни Фуд{% endblock %}
+{% block meta_description %}Актуальные вакансии в Брауни Фуд. Присоединяйтесь к команде по производству десертов и гастрономии.{% endblock %}
+
 {% block content %}
 
-<section class="py-24">
+<section class="py-24 vacancies-page">
 
     <div class="container-custom">
 
@@ -27,6 +30,12 @@
             {% for vacancy in vacancies %}
 
                 {% include 'components/vacancy_card.html' %}
+
+            {% empty %}
+
+                <p class="products-catalog-empty">
+                    В данный момент открытых вакансий нет.
+                </p>
 
             {% endfor %}
 

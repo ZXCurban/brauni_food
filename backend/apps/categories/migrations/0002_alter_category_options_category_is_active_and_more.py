@@ -4,49 +4,66 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
-        ('categories', '0001_initial'),
+        ("categories", "0001_initial"),
     ]
 
     operations = [
         migrations.AlterModelOptions(
-            name='category',
-            options={'ordering': ['sort_order', 'name'], 'verbose_name': 'Категория', 'verbose_name_plural': 'Категории'},
+            name="category",
+            options={
+                "ordering": ["sort_order", "name"],
+                "verbose_name": "Категория",
+                "verbose_name_plural": "Категории",
+            },
         ),
         migrations.AddField(
-            model_name='category',
-            name='is_active',
-            field=models.BooleanField(default=True, verbose_name='Активна'),
+            model_name="category",
+            name="is_active",
+            field=models.BooleanField(default=True, verbose_name="Активна"),
         ),
         migrations.AddField(
-            model_name='category',
-            name='sort_order',
-            field=models.PositiveIntegerField(default=0, help_text='Чем меньше число, тем выше категория в списке.', verbose_name='Порядок'),
+            model_name="category",
+            name="sort_order",
+            field=models.PositiveIntegerField(
+                default=0,
+                help_text="Чем меньше число, тем выше категория в списке.",
+                verbose_name="Порядок",
+            ),
         ),
         migrations.AddField(
-            model_name='category',
-            name='updated_at',
-            field=models.DateTimeField(auto_now=True, verbose_name='Обновлена'),
+            model_name="category",
+            name="updated_at",
+            field=models.DateTimeField(auto_now=True, verbose_name="Обновлена"),
         ),
         migrations.AlterField(
-            model_name='category',
-            name='created_at',
-            field=models.DateTimeField(auto_now_add=True, verbose_name='Создана'),
+            model_name="category",
+            name="created_at",
+            field=models.DateTimeField(auto_now_add=True, verbose_name="Создана"),
         ),
         migrations.AlterField(
-            model_name='category',
-            name='image',
-            field=models.ImageField(blank=True, null=True, upload_to='categories/', verbose_name='Изображение'),
+            model_name="category",
+            name="image",
+            field=models.ImageField(
+                blank=True,
+                null=True,
+                upload_to="categories/",
+                verbose_name="Изображение",
+            ),
         ),
         migrations.AlterField(
-            model_name='category',
-            name='name',
-            field=models.CharField(max_length=255, verbose_name='Название'),
+            model_name="category",
+            name="name",
+            field=models.CharField(max_length=255, verbose_name="Название"),
         ),
         migrations.AlterField(
-            model_name='category',
-            name='slug',
-            field=models.SlugField(blank=True, help_text='Заполняется автоматически из названия. Можно изменить вручную.', unique=True, verbose_name='Slug'),
+            model_name="category",
+            name="slug",
+            field=models.SlugField(
+                blank=True,
+                help_text="Заполняется автоматически из названия. Можно изменить вручную.",
+                unique=True,
+                verbose_name="Slug",
+            ),
         ),
     ]

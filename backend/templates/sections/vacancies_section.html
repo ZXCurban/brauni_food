@@ -1,50 +1,55 @@
-<section
-    class="
-        py-24
-    "
->
+{% load static %}
 
-    <div
-        class="
-            container-custom
-        "
-    >
+<section class="home-vacancies-section">
 
-        <span
-            class="
-                text-accent
-                uppercase
-                tracking-[0.3em]
-                text-sm
-            "
-        >
-            Команда
-        </span>
+    <div class="home-vacancies-container">
 
-        <h2
-            class="
-                mt-4
-                text-5xl
-                font-bold
-                text-primary
-            "
-        >
-            Работа в Brauni
-        </h2>
+        <div class="home-vacancies-media">
+            <img
+                src="{% static 'images/placeholders/placeholder.png' %}"
+                alt=""
+            >
+        </div>
 
-        <div
-            class="
-                mt-16
-                grid
-                gap-10
-            "
-        >
+        <div class="home-vacancies-content">
 
-            {% for vacancy in vacancies %}
+            <div class="home-vacancies-label">
+                Команда
+            </div>
 
-                {% include 'components/vacancy_card.html' %}
+            <h2 class="home-vacancies-title">
+                Работа в Брауни
+            </h2>
 
-            {% endfor %}
+            <p class="home-vacancies-text">
+                Собираем аккуратную команду для производства, кухни и ежедневной работы с продуктом.
+            </p>
+
+            {% if vacancies %}
+                <div class="home-vacancies-list">
+
+                    {% for vacancy in vacancies %}
+                        <a href="{% url 'vacancies' %}" class="home-vacancy-card">
+
+                            <span class="home-vacancy-name">
+                                {{ vacancy.title }}
+                            </span>
+
+                            {% if vacancy.salary %}
+                                <span class="home-vacancy-salary">
+                                    {{ vacancy.salary }}
+                                </span>
+                            {% endif %}
+
+                        </a>
+                    {% endfor %}
+
+                </div>
+            {% endif %}
+
+            <a href="{% url 'vacancies' %}" class="home-vacancies-button">
+                Смотреть вакансии
+            </a>
 
         </div>
 

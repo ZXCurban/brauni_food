@@ -1,0 +1,67 @@
+/* ========================================
+   Typography — Brauni Food
+   Shared heading and text patterns.
+   ======================================== */
+
+/* ---- Section Labels ---- */
+.section-label {
+    margin-bottom: var(--space-md);
+    color: var(--color-primary-56);
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-bold);
+    letter-spacing: 0.2em;
+    line-height: 1.2;
+    text-transform: uppercase;
+}
+
+/* ---- Section Titles (large) ---- */
+.section-title {
+    font-size: var(--font-size-9xl);
+    line-height: 0.95;
+    font-weight: var(--font-weight-bold);
+    letter-spacing: 0;
+    color: var(--color-primary);
+}
+
+/* ---- Body text (on accent bg) ---- */
+.text-body {
+    color: var(--color-primary-72);
+    font-size: var(--font-size-xl);
+    line-height: 1.5;
+}
+
+/* ---- Legal / meta text ---- */
+.text-meta {
+    color: var(--color-primary-54);
+    font-size: var(--font-size-base);
+    font-weight: var(--font-weight-semibold);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}
+
+/* ---- Compact title (spiral blocks) ---- */
+.spiral-title {
+    margin: 0 0 var(--space-lg) 0;
+    font-size: var(--font-size-10xl);
+    line-height: 1;
+    font-weight: var(--font-weight-bold);
+    color: var(--color-white);
+    text-shadow: var(--shadow-text);
+}
+
+.spiral-description {
+    max-width: 640px;
+    margin: 0 0 var(--space-2xl) 0;
+    font-size: var(--font-size-3xl);
+    line-height: 1.5;
+    color: var(--color-white-80);
+}
+
+/* ---- Glass card title ---- */
+.card-title {
+    margin: 0 0 6px 0;
+    font-size: var(--font-size-xl);
+    line-height: 1.1;
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-primary);
+}

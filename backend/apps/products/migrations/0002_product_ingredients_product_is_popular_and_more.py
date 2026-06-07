@@ -4,45 +4,44 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
-        ('products', '0001_initial'),
+        ("products", "0001_initial"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='product',
-            name='ingredients',
+            model_name="product",
+            name="ingredients",
             field=models.TextField(blank=True),
         ),
         migrations.AddField(
-            model_name='product',
-            name='is_popular',
+            model_name="product",
+            name="is_popular",
             field=models.BooleanField(default=False),
         ),
         migrations.AddField(
-            model_name='product',
-            name='shelf_life',
+            model_name="product",
+            name="shelf_life",
             field=models.CharField(blank=True, max_length=100),
         ),
         migrations.AddField(
-            model_name='product',
-            name='storage_temperature',
+            model_name="product",
+            name="storage_temperature",
             field=models.CharField(blank=True, max_length=100),
         ),
         migrations.AddField(
-            model_name='product',
-            name='updated_at',
+            model_name="product",
+            name="updated_at",
             field=models.DateTimeField(auto_now=True),
         ),
         migrations.AddField(
-            model_name='product',
-            name='weight',
+            model_name="product",
+            name="weight",
             field=models.CharField(blank=True, max_length=100),
         ),
         migrations.AlterField(
-            model_name='product',
-            name='image',
-            field=models.ImageField(upload_to='products/'),
+            model_name="product",
+            name="image",
+            field=models.ImageField(upload_to="products/"),
         ),
     ]

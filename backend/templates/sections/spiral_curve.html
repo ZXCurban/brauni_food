@@ -1,0 +1,96 @@
+{% load static %}
+
+<div class="spiral-curve-block">
+
+    <div class="spiral-curve-bg">
+        <img
+            src="{% static 'images/backgrounds/spiral_curve.svg' %}"
+            alt=""
+            class="spiral-curve-svg"
+        >
+    </div>
+
+    <div class="spiral-curve-content">
+
+        <div class="spiral-curve-text">
+
+            <h2 class="spiral-curve-title">
+                {% if home_block %}
+                    {{ home_block.curve_title|default:"Работа в Брауни" }}
+                {% else %}
+                    Работа в Брауни
+                {% endif %}
+            </h2>
+
+            <p class="spiral-curve-description">
+                {% if home_block %}
+                    {{ home_block.curve_description|default:"Собираем аккуратную команду для производства, кухни и ежедневной работы с продуктом." }}
+                {% else %}
+                    Собираем аккуратную команду для производства, кухни и ежедневной работы с продуктом.
+                {% endif %}
+            </p>
+
+            <a
+                href="{{ home_block.curve_button_url|default:'/vacancies/' }}"
+                class="spiral-curve-button"
+            >
+                {% if home_block %}
+                    {{ home_block.curve_button_text|default:"Смотреть вакансии" }}
+                {% else %}
+                    Смотреть вакансии
+                {% endif %}
+            </a>
+
+        </div>
+
+        <div class="spiral-curve-image">
+            {% if home_block and home_block.curve_image %}
+                <img
+                    src="{{ home_block.curve_image.url }}"
+                    alt=""
+                    class="spiral-curve-img"
+                    loading="lazy"
+                    decoding="async"
+                >
+            {% else %}
+                <img
+                    src="{% static 'images/placeholders/placeholder.png' %}"
+                    alt=""
+                    class="spiral-curve-img"
+                    loading="lazy"
+                    decoding="async"
+                >
+            {% endif %}
+        </div>
+
+    </div>
+
+    <div class="spiral-curve-vacancies">
+        <div class="spiral-curve-vacancies-inner">
+
+            {% if vacancies %}
+                <div class="spiral-curve-vacancies-list">
+
+                    {% for vacancy in vacancies %}
+                        <a href="{% url 'vacancies' %}" class="spiral-curve-vacancy-card">
+
+                            <span class="spiral-curve-vacancy-name">
+                                {{ vacancy.title }}
+                            </span>
+
+                            {% if vacancy.salary %}
+                                <span class="spiral-curve-vacancy-salary">
+                                    {{ vacancy.salary }}
+                                </span>
+                            {% endif %}
+
+                        </a>
+                    {% endfor %}
+
+                </div>
+            {% endif %}
+
+        </div>
+    </div>
+
+</div>

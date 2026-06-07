@@ -29,7 +29,7 @@ export default defineConfig({
                     'js/[name].js',
 
                 assetFileNames:
-                    'css/[name][extname]',
+                    'css/brauni-tailwind[extname]',
             },
         },
     },

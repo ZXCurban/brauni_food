@@ -4,81 +4,142 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     initial = True
 
-    dependencies = [
-    ]
+    dependencies = []
 
     operations = [
         migrations.CreateModel(
-            name='CompanyFeature',
+            name="CompanyFeature",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('title', models.CharField(max_length=255)),
-                ('description', models.TextField(blank=True)),
-                ('icon', models.CharField(blank=True, help_text='Название Material Icon', max_length=100)),
-                ('order', models.PositiveIntegerField(default=0)),
-                ('is_active', models.BooleanField(default=True)),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("title", models.CharField(max_length=255)),
+                ("description", models.TextField(blank=True)),
+                (
+                    "icon",
+                    models.CharField(
+                        blank=True, help_text="Название Material Icon", max_length=100
+                    ),
+                ),
+                ("order", models.PositiveIntegerField(default=0)),
+                ("is_active", models.BooleanField(default=True)),
             ],
             options={
-                'verbose_name': 'Преимущество',
-                'verbose_name_plural': 'Преимущества',
-                'ordering': ['order'],
+                "verbose_name": "Преимущество",
+                "verbose_name_plural": "Преимущества",
+                "ordering": ["order"],
             },
         ),
         migrations.CreateModel(
-            name='CompanyGalleryImage',
+            name="CompanyGalleryImage",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('image', models.ImageField(upload_to='company/gallery/')),
-                ('title', models.CharField(blank=True, max_length=255)),
-                ('order', models.PositiveIntegerField(default=0)),
-                ('is_active', models.BooleanField(default=True)),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("image", models.ImageField(upload_to="company/gallery/")),
+                ("title", models.CharField(blank=True, max_length=255)),
+                ("order", models.PositiveIntegerField(default=0)),
+                ("is_active", models.BooleanField(default=True)),
             ],
             options={
-                'ordering': ['order'],
+                "ordering": ["order"],
             },
         ),
         migrations.CreateModel(
-            name='CompanyInfo',
+            name="CompanyInfo",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('title', models.CharField(max_length=255, verbose_name='Название компании')),
-                ('short_description', models.TextField(verbose_name='Краткое описание')),
-                ('about_text', models.TextField(verbose_name='Текст о компании')),
-                ('mission_text', models.TextField(blank=True, verbose_name='Миссия компании')),
-                ('work_text', models.TextField(blank=True, verbose_name='Как мы работаем')),
-                ('hero_image', models.ImageField(upload_to='company/hero/', verbose_name='Главное изображение')),
-                ('phone', models.CharField(blank=True, max_length=255)),
-                ('email', models.EmailField(blank=True, max_length=254)),
-                ('address', models.TextField(blank=True)),
-                ('inn', models.CharField(blank=True, max_length=32, verbose_name='ИНН')),
-                ('ogrn', models.CharField(blank=True, max_length=32, verbose_name='ОГРН')),
-                ('whatsapp_url', models.URLField(blank=True)),
-                ('telegram_url', models.URLField(blank=True)),
-                ('is_active', models.BooleanField(default=True)),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                (
+                    "title",
+                    models.CharField(max_length=255, verbose_name="Название компании"),
+                ),
+                (
+                    "short_description",
+                    models.TextField(verbose_name="Краткое описание"),
+                ),
+                ("about_text", models.TextField(verbose_name="Текст о компании")),
+                (
+                    "mission_text",
+                    models.TextField(blank=True, verbose_name="Миссия компании"),
+                ),
+                (
+                    "work_text",
+                    models.TextField(blank=True, verbose_name="Как мы работаем"),
+                ),
+                (
+                    "hero_image",
+                    models.ImageField(
+                        upload_to="company/hero/", verbose_name="Главное изображение"
+                    ),
+                ),
+                ("phone", models.CharField(blank=True, max_length=255)),
+                ("email", models.EmailField(blank=True, max_length=254)),
+                ("address", models.TextField(blank=True)),
+                (
+                    "inn",
+                    models.CharField(blank=True, max_length=32, verbose_name="ИНН"),
+                ),
+                (
+                    "ogrn",
+                    models.CharField(blank=True, max_length=32, verbose_name="ОГРН"),
+                ),
+                ("whatsapp_url", models.URLField(blank=True)),
+                ("telegram_url", models.URLField(blank=True)),
+                ("is_active", models.BooleanField(default=True)),
             ],
             options={
-                'verbose_name': 'Информация о компании',
-                'verbose_name_plural': 'Информация о компании',
+                "verbose_name": "Информация о компании",
+                "verbose_name_plural": "Информация о компании",
             },
         ),
         migrations.CreateModel(
-            name='CompanySection',
+            name="CompanySection",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('title', models.CharField(max_length=255)),
-                ('text', models.TextField()),
-                ('image', models.ImageField(upload_to='company/sections/')),
-                ('image_left', models.BooleanField(default=True, verbose_name='Изображение слева')),
-                ('order', models.PositiveIntegerField(default=0)),
-                ('is_active', models.BooleanField(default=True)),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("title", models.CharField(max_length=255)),
+                ("text", models.TextField()),
+                ("image", models.ImageField(upload_to="company/sections/")),
+                (
+                    "image_left",
+                    models.BooleanField(default=True, verbose_name="Изображение слева"),
+                ),
+                ("order", models.PositiveIntegerField(default=0)),
+                ("is_active", models.BooleanField(default=True)),
             ],
             options={
-                'verbose_name': 'Секция',
-                'verbose_name_plural': 'Секции',
-                'ordering': ['order'],
+                "verbose_name": "Секция",
+                "verbose_name_plural": "Секции",
+                "ordering": ["order"],
             },
         ),
     ]

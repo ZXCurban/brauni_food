@@ -1,0 +1,47 @@
+/* ========================================
+   Products Catalog Page
+   ======================================== */
+
+.products-catalog-section,
+.category-products-section {
+    position: relative;
+    padding: 60px 0 60px 0;
+}
+
+.products-catalog-section--remaining {
+    padding-top: 48px;
+}
+
+.category-cards-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: var(--space-xl);
+}
+
+/* Last odd category spans full width */
+.category-cards-grid > .category-card:last-child:nth-child(odd) {
+    grid-column: 1 / -1;
+}
+
+@media (max-width: 768px) {
+    .products-catalog-section,
+    .category-products-section {
+        padding: 48px 0 48px 0;
+    }
+
+    .category-cards-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 12px;
+    }
+}
+
+@media (max-width: 480px) {
+    .products-catalog-section,
+    .category-products-section {
+        padding: 36px 0 36px 0;
+    }
+
+    .category-cards-grid {
+        gap: 10px;
+    }
+}

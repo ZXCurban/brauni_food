@@ -1,4 +1,10 @@
+import io
+
+from PIL import Image as PILImage
+
 from django.contrib import messages
+from django.db import models
+from django.forms import Textarea
 from django.utils.html import format_html
 from django.utils.safestring import mark_safe
 from django.utils.text import slugify
@@ -98,14 +104,24 @@ def message_for_update(modeladmin, request, updated, action):
         messages.SUCCESS,
     )
 
+
+class ContentTextareaMixin:
+    """Shared formfield override — renders all TextField widgets with a compact
+    ``rows=5`` textarea so admin forms stay tidy."""
+
+    formfield_overrides = {
+        models.TextField: {
+            "widget": Textarea(attrs={"rows": 5}),
+        },
+    }
+
+
 def validate_image(image):
 
-    max_size_mb = 5
+    max_size_mb = 8
 
     if image.size > max_size_mb * 1024 * 1024:
-        raise ValidationError(
-            f"Максимальный размер изображения: {max_size_mb}MB"
-        )
+        raise ValidationError(f"Максимальный размер изображения: {max_size_mb}MB")
 
     valid_extensions = (
         ".jpg",
@@ -117,6 +133,43 @@ def validate_image(image):
     file_name = image.name.lower()
 
     if not file_name.endswith(valid_extensions):
-        raise ValidationError(
-            "Поддерживаются только JPG, PNG и WEBP"
-        )
+        raise ValidationError("Поддерживаются только JPG, PNG и WEBP")
+
+
+def compress_image(image_file, max_width=2000, quality=82):
+    """
+    Resize image to *max_width* (keep aspect ratio) and convert to WebP.
+
+    Returns an in-memory BytesIO stream so the original uploaded file can be
+    replaced before saving.
+    """
+
+    pil = PILImage.open(image_file)
+
+    if pil.mode in ("RGBA", "LA", "P"):
+        if pil.mode == "P":
+            pil = pil.convert("RGBA")
+        elif pil.mode != "RGBA":
+            pil = pil.convert("RGBA")
+
+    if pil.mode == "RGBA":
+        # Drop alpha channel if it's fully opaque (produces smaller WebP)
+        if pil.getchannel("A").getextrema()[0] == 255:
+            pil = pil.convert("RGB")
+
+    # Resize if wider than max_width
+    if pil.width > max_width:
+        ratio = max_width / pil.width
+        new_height = int(pil.height * ratio)
+        pil = pil.resize((max_width, new_height), PILImage.LANCZOS)
+
+    # Save to in-memory buffer as WebP
+    out = io.BytesIO()
+    save_kwargs = {"quality": quality, "optimize": True}
+    if pil.mode == "RGBA":
+        pil.save(out, "WEBP", **save_kwargs, lossless=False)
+    else:
+        pil.save(out, "WEBP", **save_kwargs)
+
+    out.seek(0)
+    return out

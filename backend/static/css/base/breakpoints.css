@@ -1,0 +1,26 @@
+/* ========================================
+   Responsive Breakpoints — Brauni Food
+   Unified breakpoint system for all modules.
+
+   ═══ Usage in media queries ═══
+   @media (max-width: 768px)  { ... }   Mobile
+   @media (max-width: 900px)  { ... }   Tablet intermediate
+   @media (max-width: 1100px) { ... }   Wide / nav collapse
+
+   ═══ Breakpoint purpose ═══
+   768px  — Primary mobile breakpoint.
+            Single-column layouts, stacked cards,
+            reduced font sizes, full-width buttons.
+
+   900px  — Tablet intermediate.
+            Grids that need more room than 768px
+            but collapse before 1100px (footer, company sections).
+
+   1100px — Wide layout adjustments.
+            Header nav collapse, category carousel
+            column changes, large-format tweaks.
+   ======================================== */
+
+/* Mobile-first base styles are in each component.
+   Media queries progressively enhance for larger screens
+   or constrain for smaller ones (max-width pattern). */

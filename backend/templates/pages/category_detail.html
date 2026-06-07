@@ -1,0 +1,62 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ category.name }} — Брауни Фуд{% endblock %}
+{% block meta_description %}Товары категории {{ category.name }} от Брауни Фуд. Готовый ассортимент для витрин и кофеен.{% endblock %}
+
+{% block content %}
+
+<section class="product-detail-section category-detail-section">
+    <div class="product-detail-container">
+
+        <a href="{% url 'products' %}" class="product-detail-back">
+            Каталог
+        </a>
+
+        <div class="product-detail-layout category-detail-layout">
+            <div class="product-detail-image-wrap">
+                <img
+                    src="{{ category.image_url }}"
+                    alt="{{ category.name }}"
+                    class="product-detail-image"
+                >
+            </div>
+
+            <div class="product-detail-content category-detail-content">
+                <div class="product-detail-category">
+                    Категория
+                </div>
+
+                <h1 class="product-detail-title">
+                    {{ category.name }}
+                </h1>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+<section class="category-products-section">
+    <div class="featured-products-container">
+        <div class="featured-products-top">
+            <div class="featured-products-label">
+                Товары категории
+            </div>
+
+            <h2 class="featured-products-title">
+                {{ category.name }}
+            </h2>
+        </div>
+
+        <div class="featured-products-grid">
+            {% for product in category.products.all %}
+                {% include 'components/product_card.html' with is_featured_card=True %}
+            {% empty %}
+                <p class="products-catalog-empty">
+                    В этой категории пока нет товаров.
+                </p>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+{% endblock %}

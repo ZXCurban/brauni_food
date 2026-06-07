@@ -6,6 +6,7 @@ venv/
 # Django
 db.sqlite3
 media/
+staticfiles/
 
 # Env
 .env
@@ -17,6 +18,9 @@ dist/
 # IDE
 .idea/
 .vscode/
+
+# Vite build artifacts (CSS only — JS is part of the pipeline)
+backend/static/css/brauni-tailwind.css
 
 # OS
 .DS_Store

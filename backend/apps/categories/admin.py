@@ -3,7 +3,12 @@ from django.db.models import Count
 from django.urls import reverse
 from django.utils.html import format_html
 
-from apps.admin_utils import boolean_badge, image_preview, make_unique_slug, message_for_update
+from apps.admin_utils import (
+    boolean_badge,
+    image_preview,
+    make_unique_slug,
+    message_for_update,
+)
 from apps.products.models import Product
 
 from .models import Category
@@ -51,7 +56,7 @@ class CategoryAdmin(admin.ModelAdmin):
         "name",
         "slug",
         "sort_order",
-        "activity",
+        "status_badge",
         "is_active",
         "products_count",
         "created_at",
@@ -103,7 +108,7 @@ class CategoryAdmin(admin.ModelAdmin):
         return image_preview(obj, width=320, height=220)
 
     @admin.display(description="Статус", ordering="is_active")
-    def activity(self, obj):
+    def status_badge(self, obj):
         return boolean_badge(obj.is_active)
 
     @admin.display(description="Товаров", ordering="products_count")

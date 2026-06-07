@@ -1,0 +1,296 @@
+/* ========================================
+   Carousels — hero + category tabs
+   ======================================== */
+
+/* ========================================
+   HERO CAROUSEL
+   ======================================== */
+
+.hero-section {
+    position: relative;
+    z-index: 0;
+    margin-top: 0;
+    overflow: hidden;
+    background: var(--color-accent);
+}
+
+.hero-carousel-block {
+    position: relative;
+    width: 100%;
+    height: 825px;
+    overflow: hidden;
+}
+
+/* ---- Slides ---- */
+.hero-carousel-images {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: -15%;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    pointer-events: none;
+}
+
+.hero-carousel-slide {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    transition: opacity 1s ease;
+    z-index: 1;
+}
+
+.hero-carousel-slide.is-active {
+    opacity: 1;
+    z-index: 2;
+}
+
+.hero-carousel-img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    mask-image: linear-gradient(
+        to top,
+        rgba(0, 0, 0, 1) 0%,
+        rgba(0, 0, 0, 0) 80%
+    );
+    -webkit-mask-image: linear-gradient(
+        to top,
+        rgba(0, 0, 0, 1) 0%,
+        rgba(0, 0, 0, 1) 70%,
+        rgba(0, 0, 0, 0) 100%
+    );
+}
+
+/* ---- Overlay ---- */
+.hero-overlay {
+    position: absolute;
+    inset: 0;
+    z-index: 10;
+    display: flex;
+    align-items: center;
+}
+
+.hero-overlay-container {
+    width: var(--container-default);
+    margin: 0 auto;
+    padding-left: clamp(0px, 50%, 700px);
+    position: relative;
+    z-index: 1;
+}
+
+.hero-overlay-title,
+.hero-overlay-text {
+    user-select: none;
+}
+
+.hero-overlay-title {
+    margin: 0 0 var(--space-lg) 0;
+    font-size: 144px;
+    line-height: 0.88;
+    font-weight: var(--font-weight-bold);
+    letter-spacing: 0;
+    color: var(--color-primary);
+}
+
+.hero-overlay-text {
+    max-width: 560px;
+    margin: 0 0 var(--space-2xl) 0;
+    font-size: var(--font-size-5xl);
+    line-height: 1.45;
+    color: var(--color-primary);
+}
+
+/* ---- Dots ---- */
+.hero-carousel-dots {
+    position: absolute;
+    bottom: var(--font-size-3xl);
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 20;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.hero-carousel-dot {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    border: none;
+    background: none;
+    cursor: pointer;
+    transition: transform var(--transition-fast);
+}
+
+.hero-carousel-dot:hover {
+    transform: scaleY(1.3);
+}
+
+.hero-carousel-dot-bar {
+    display: block;
+    width: 40px;
+    height: 4px;
+    border-radius: var(--radius-pill);
+    background: var(--color-white-35);
+    transition:
+        background var(--transition-slow),
+        transform var(--transition-slow);
+}
+
+.hero-carousel-dot.is-active .hero-carousel-dot-bar {
+    background: var(--color-primary);
+    transform: scaleY(1.4);
+}
+
+/* ---- Hero responsive ---- */
+@media (max-width: 1100px) {
+    .hero-overlay-title {
+        font-size: 96px;
+    }
+}
+
+@media (max-width: 900px) {
+    .hero-overlay-title {
+        font-size: 64px;
+    }
+
+    .hero-overlay-text {
+        font-size: 28px;
+    }
+}
+
+@media (max-width: 768px) {
+    .hero-carousel-block {
+        height: 480px;
+    }
+
+    .hero-carousel-images {
+        left: 0;
+    }
+
+    .hero-overlay-container {
+        padding-left: 0;
+    }
+
+    .hero-overlay-title {
+        font-size: 42px;
+    }
+
+    .hero-overlay-text {
+        font-size: 17px;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero-carousel-block {
+        height: 380px;
+    }
+
+    .hero-overlay-title {
+        font-size: 34px;
+    }
+}
+
+
+/* ========================================
+   CATEGORY TAB CAROUSEL
+   ======================================== */
+
+.featured-products-nav {
+    position: relative;
+    margin-bottom: 32px;
+    border-bottom: 1px solid var(--color-primary-12);
+}
+
+.featured-products-carousel-viewport {
+    flex: 1;
+    overflow: hidden;
+    mask-image: linear-gradient(
+        to right,
+        transparent 0%,
+        black 18%,
+        black 82%,
+        transparent 100%
+    );
+    -webkit-mask-image: linear-gradient(
+        to right,
+        transparent 0%,
+        black 18%,
+        black 82%,
+        transparent 100%
+    );
+}
+
+.featured-products-carousel-track {
+    display: flex;
+    align-items: center;
+    gap: 0;
+    transition: transform var(--transition-carousel);
+    will-change: transform;
+}
+
+.featured-products-nav-item {
+    position: relative;
+    flex: 0 0 calc(100% / 3);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 var(--space-xs) var(--space-md) var(--space-xs);
+    border: none;
+    background: none;
+    cursor: pointer;
+    font-size: var(--font-size-lg);
+    font-weight: var(--font-weight-medium);
+    line-height: 1.2;
+    white-space: nowrap;
+    color: var(--color-primary-40);
+    transition: color var(--transition-normal);
+}
+
+.featured-products-nav-item:hover {
+    color: var(--color-primary-60);
+}
+
+.featured-products-nav-item.is-active {
+    font-weight: var(--font-weight-bold);
+    color: var(--color-primary);
+}
+
+.featured-products-nav-item.is-active::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60%;
+    height: 2px;
+    border-radius: 1px;
+    background: var(--color-primary);
+}
+
+/* ---- Category carousel grids ---- */
+.featured-products-grids {
+    position: relative;
+}
+
+/* ---- Responsive ---- */
+@media (max-width: 768px) {
+    .featured-products-nav {
+        margin-bottom: 24px;
+    }
+
+    .featured-products-nav-item {
+        padding: 0 8px var(--space-xs) 8px;
+        font-size: var(--font-size-sm);
+    }
+
+    .featured-products-nav-item.is-active {
+        font-size: var(--font-size-sm);
+    }
+}

@@ -1,82 +1,144 @@
 {% extends 'base.html' %}
-
 {% load static %}
+
+{% block title %}О компании — Брауни Фуд{% endblock %}
+{% block meta_description %}Брауни Фуд — производство десертов, сэндвичей и гастрономии. Халяль продукция, высокое качество, выгодное сотрудничество.{% endblock %}
 
 {% block content %}
 
-<section
-    class="
-        py-24
-    "
->
+<section class="company-heading-section">
+    <div class="featured-products-container">
+        <h1 class="featured-products-title company-heading-title">
+            БРАУНИ — ЭТО...
+        </h1>
+    </div>
+</section>
 
-    <div
-        class="
-            container-custom
-            grid
-            lg:grid-cols-2
-            gap-20
-            items-center
-        "
-    >
-
-        <div>
-
-            <span
-                class="
-                    text-accent
-                    uppercase
-                    tracking-[0.3em]
-                    text-sm
-                "
-            >
-                О компании
-            </span>
-
-            <h1
-                class="
-                    mt-6
-                    text-6xl
-                    font-bold
-                    text-primary
-                "
-            >
-                Brauni Food
-            </h1>
-
-            <p
-                class="
-                    mt-8
-                    text-xl
-                    text-zinc-600
-                    leading-relaxed
-                "
-            >
-                Современное производство
-                быстрого питания,
-                гастрономии
-                и кондитерских изделий.
-            </p>
-
-        </div>
-
+<section class="company-spiral-block">
+    <div class="spiral-curve-bg company-spiral-bg">
         <img
-
-            src="{% static 'images/placeholders/placeholder.png' %}"
-
-            alt="Company"
-
-            class="
-                rounded-[32px]
-                shadow-2xl
-                h-[600px]
-                object-cover
-                w-full
-            "
+            src="{% static 'images/backgrounds/spiral_curve.svg' %}"
+            alt=""
+            class="spiral-curve-svg company-spiral-svg"
         >
-
     </div>
 
+    <div class="company-spiral-icons">
+        <div class="company-spiral-icon company-spiral-icon--halal">
+            <img
+                src="{% static 'icons/halal.svg' %}"
+                alt="Халяль продукция"
+            >
+            <p>Халяль продукция</p>
+        </div>
+
+        <div class="company-spiral-icon company-spiral-icon--quality">
+            <img
+                src="{% static 'icons/quality.svg' %}"
+                alt="Высокое качество"
+            >
+            <p>Высокое качество</p>
+        </div>
+
+        <div class="company-spiral-icon company-spiral-icon--cooperation">
+            <img
+                src="{% static 'icons/cooperation.svg' %}"
+                alt="Выгодное сотрудничество"
+            >
+            <p>Выгодное сотрудничество</p>
+        </div>
+    </div>
+</section>
+
+<section class="company-content-section">
+    <div class="featured-products-container">
+
+        {% for section in sections %}
+            <article
+                class="company-content-block{% if section.image %} company-content-block--with-image{% endif %}{% if section.image and section.image_left %} company-content-block--image-left{% endif %}"
+            >
+                {% if section.image %}
+                    <div class="company-content-image-wrap">
+                        <img
+                            src="{{ section.image_url }}"
+                            alt="{{ section.title }}"
+                            class="company-content-image"
+                        >
+                    </div>
+                {% endif %}
+
+                <div class="company-content-copy">
+                    <h2 class="company-content-title">
+                        {{ section.title }}
+                    </h2>
+                    <div class="company-content-text">
+                        {{ section.text|linebreaks }}
+                    </div>
+                </div>
+            </article>
+
+            {% if not forloop.last %}
+                <div class="header-divider company-content-divider"></div>
+            {% endif %}
+        {% endfor %}
+
+        {% if company_info %}
+            {% if sections %}
+                <div class="header-divider company-content-divider"></div>
+            {% endif %}
+
+            <section class="company-legal-block">
+                <h2 class="company-content-title">
+                    Юридическая информация
+                </h2>
+
+                <dl class="company-legal-list">
+                    {% if company_info.title %}
+                        <div class="company-legal-item">
+                            <dt>Компания</dt>
+                            <dd>{{ company_info.title }}</dd>
+                        </div>
+                    {% endif %}
+
+                    {% if company_info.inn %}
+                        <div class="company-legal-item">
+                            <dt>ИНН</dt>
+                            <dd>{{ company_info.inn }}</dd>
+                        </div>
+                    {% endif %}
+
+                    {% if company_info.ogrn %}
+                        <div class="company-legal-item">
+                            <dt>ОГРН</dt>
+                            <dd>{{ company_info.ogrn }}</dd>
+                        </div>
+                    {% endif %}
+
+                    {% if company_info.address %}
+                        <div class="company-legal-item">
+                            <dt>Адрес</dt>
+                            <dd>{{ company_info.address }}</dd>
+                        </div>
+                    {% endif %}
+
+                    {% if company_info.phone %}
+                        <div class="company-legal-item">
+                            <dt>Телефон</dt>
+                            <dd>{{ company_info.phone }}</dd>
+                        </div>
+                    {% endif %}
+
+                    {% if company_info.email %}
+                        <div class="company-legal-item">
+                            <dt>Email</dt>
+                            <dd>{{ company_info.email }}</dd>
+                        </div>
+                    {% endif %}
+                </dl>
+            </section>
+        {% endif %}
+
+    </div>
 </section>
 
 {% endblock %}

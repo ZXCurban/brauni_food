@@ -1,16 +1,21 @@
 from django.contrib import admin
-from django.forms import Textarea
-from django.db import models
-from django.utils.safestring import mark_safe
 
-from apps.admin_utils import badge, image_preview, make_unique_slug, message_for_update
+from apps.admin_utils import (
+    ContentTextareaMixin,
+    badge,
+    image_preview,
+    make_unique_slug,
+    message_for_update,
+)
 from .models import Vacancy
 
 
 @admin.action(description="Активировать выбранные вакансии")
 def make_active(modeladmin, request, queryset):
     updated = queryset.update(is_active=True)
-    message_for_update(modeladmin, request, updated, "вакансии переведены в статус активных")
+    message_for_update(
+        modeladmin, request, updated, "вакансии переведены в статус активных"
+    )
 
 
 @admin.action(description="Деактивировать выбранные вакансии")
@@ -20,7 +25,7 @@ def make_inactive(modeladmin, request, queryset):
 
 
 @admin.register(Vacancy)
-class VacancyAdmin(admin.ModelAdmin):
+class VacancyAdmin(ContentTextareaMixin, admin.ModelAdmin):
     list_display = (
         "preview",
         "title",
@@ -35,6 +40,7 @@ class VacancyAdmin(admin.ModelAdmin):
     list_filter = ("is_active", "employment_type", "salary_type", "created_at")
     search_fields = ("title", "slug", "short_description", "requirements")
     readonly_fields = ("preview_large", "created_at", "updated_at")
+    prepopulated_fields = {"slug": ("title",)}
     ordering = ("-created_at", "title")
     list_per_page = 20
     actions = (make_active, make_inactive)
@@ -81,12 +87,6 @@ class VacancyAdmin(admin.ModelAdmin):
             },
         ),
     )
-
-    formfield_overrides = {
-        models.TextField: {
-            "widget": Textarea(attrs={"rows": 6, "style": "width: 100%;"}),
-        },
-    }
 
     @admin.display(description="Превью")
     def preview(self, obj):

@@ -1,0 +1,452 @@
+/* ========================================
+   Cards — product, category, vacancy cards
+   ======================================== */
+
+/* ---- Product card ---- */
+.product-card {
+    display: grid;
+    grid-template-columns: 180px 1fr;
+    gap: 0;
+    min-height: 200px;
+    padding: 0;
+    border-radius: var(--radius-xl);
+    text-decoration: none;
+    background: var(--color-white-16);
+    border: 1px solid var(--color-white-24);
+    overflow: hidden;
+    transition:
+        transform var(--transition-fast),
+        background var(--transition-fast),
+        border-color var(--transition-fast),
+        box-shadow var(--transition-fast);
+}
+
+.product-card:hover {
+    transform: translateY(-4px);
+    background: var(--color-white-22);
+    border-color: var(--color-white-35);
+}
+
+/* Featured variant */
+.product-card--featured {
+    position: relative;
+    background: var(--color-white-20);
+    border-color: var(--color-white-32);
+    box-shadow: var(--shadow-card);
+}
+
+.product-card--featured:hover {
+    border-color: var(--color-white-50);
+    box-shadow: var(--shadow-card-hover);
+}
+
+/* ---- Product card image ---- */
+.product-card-image-wrapper {
+    position: relative;
+    overflow: hidden;
+    border-radius: 0;
+    background: var(--color-white-50);
+    aspect-ratio: auto;
+}
+
+.product-card--featured .product-card-image-wrapper {
+    box-shadow: none;
+}
+
+.product-card-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform var(--transition-slow);
+}
+
+.product-card--featured:hover .product-card-image {
+    transform: scale(1.05);
+}
+
+/* ---- Product card content ---- */
+.product-card-content {
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    padding: var(--space-lg) var(--space-xl);
+}
+
+.product-card-title {
+    margin: 0 0 6px 0;
+    font-size: var(--font-size-xl);
+    line-height: 1.1;
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-primary);
+}
+
+.product-card-ingredients {
+    max-width: none;
+    margin: 0 0 var(--space-sm) 0;
+    font-size: var(--font-size-sm);
+    line-height: 1.4;
+    color: var(--color-primary-70);
+}
+
+/* ---- Product card bottom row ---- */
+.product-card-bottom {
+    margin-top: auto;
+}
+
+.product-card--featured .product-card-bottom {
+    margin-top: auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.product-card-weight {
+    margin-bottom: 2px;
+    font-size: var(--font-size-xs);
+    line-height: 1.2;
+    font-weight: var(--font-weight-medium);
+    color: var(--color-primary-60);
+}
+
+.product-card-price {
+    font-size: var(--font-size-xl);
+    line-height: 1;
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-primary);
+}
+
+.product-card--featured .product-card-price {
+    display: inline-flex;
+    align-items: center;
+    min-height: 0;
+    padding: 0;
+    border-radius: 0;
+    background: transparent;
+}
+
+.product-card-arrow {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex: 0 0 auto;
+    width: 32px;
+    height: 32px;
+    border-radius: var(--radius-pill);
+    background: var(--color-primary);
+    color: var(--color-white);
+    font-size: 17px;
+    line-height: 1;
+    transition:
+        transform var(--transition-fast),
+        background var(--transition-fast);
+}
+
+.product-card--featured:hover .product-card-arrow {
+    transform: translateX(3px);
+    background: var(--color-primary-dark);
+}
+
+/* ---- Badges ---- */
+.product-card-badges {
+    position: absolute;
+    top: var(--space-sm);
+    left: var(--space-sm);
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-xs);
+}
+
+.product-card-badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 22px;
+    padding: 0 var(--space-sm);
+    border-radius: var(--radius-pill);
+    background: var(--color-white-90);
+    color: var(--color-primary);
+    font-size: var(--font-size-2xs);
+    line-height: 1;
+    font-weight: var(--font-weight-semibold);
+}
+
+.product-card-badge-accent {
+    background: var(--color-primary);
+    color: var(--color-white);
+}
+
+/* ---- Product card responsive ---- */
+@media (max-width: 1100px) {
+    .product-card {
+        grid-template-columns: 200px 1fr;
+        min-height: 240px;
+        border-radius: var(--radius-2xl);
+    }
+
+    .product-card-content {
+        padding: 20px 22px;
+    }
+
+    .product-card-title {
+        font-size: 26px;
+    }
+
+    .product-card-ingredients {
+        font-size: var(--font-size-lg);
+    }
+
+    .product-card-weight {
+        font-size: var(--font-size-md);
+    }
+
+    .product-card-price {
+        font-size: var(--font-size-2xl);
+    }
+}
+
+@media (max-width: 768px) {
+    .product-card {
+        grid-template-columns: 130px 1fr;
+        min-height: 160px;
+        border-radius: var(--radius-lg);
+    }
+
+    .product-card-content {
+        padding: var(--space-md) var(--space-lg);
+    }
+
+    .product-card-title {
+        margin-bottom: var(--space-xs);
+        font-size: var(--font-size-2xl);
+    }
+
+    .product-card-ingredients {
+        font-size: var(--font-size-xs);
+    }
+
+    .product-card-weight {
+        margin-bottom: 2px;
+        font-size: var(--font-size-xs);
+    }
+
+    .product-card-price {
+        font-size: var(--font-size-2xl);
+    }
+
+    .product-card-arrow {
+        width: 28px;
+        height: 28px;
+        font-size: var(--font-size-md);
+    }
+}
+
+/* Narrow — stack image above text for 2-column grids */
+@media (max-width: 520px) {
+    .product-card {
+        grid-template-columns: 1fr;
+        grid-template-rows: auto auto;
+        min-height: auto;
+        border-radius: var(--radius-lg);
+    }
+
+    .product-card-image-wrapper {
+        aspect-ratio: 1 / 1;
+    }
+
+    .product-card-content {
+        padding: 10px 12px;
+    }
+
+    .product-card-title {
+        font-size: 15px;
+        margin-bottom: 4px;
+    }
+
+    .product-card-ingredients {
+        display: none;
+    }
+
+    .product-card-weight {
+        font-size: 11px;
+    }
+
+    .product-card-price {
+        font-size: 16px;
+    }
+
+    .product-card-bottom {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    .product-card-arrow {
+        width: 24px;
+        height: 24px;
+        font-size: 13px;
+    }
+}
+
+
+/* ========================================
+   Category card
+   ======================================== */
+
+.category-card {
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    overflow: hidden;
+    border-radius: var(--radius-xl);
+    background: var(--color-white-20);
+    border: 1px solid var(--color-white-32);
+    box-shadow: var(--shadow-card);
+    color: var(--color-primary);
+    text-decoration: none;
+    transition:
+        transform var(--transition-fast),
+        background var(--transition-fast),
+        border-color var(--transition-fast),
+        box-shadow var(--transition-fast);
+}
+
+.category-card:hover {
+    transform: translateY(-4px);
+    background: var(--color-white-22);
+    border-color: var(--color-white-50);
+    box-shadow: var(--shadow-card-hover);
+}
+
+.category-card-image-wrapper {
+    overflow: hidden;
+    aspect-ratio: 16 / 10;
+    background: var(--color-white-50);
+}
+
+.category-card-image {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform var(--transition-slow);
+}
+
+.category-card:hover .category-card-image {
+    transform: scale(1.05);
+}
+
+.category-card-content {
+    padding: 20px 22px 22px 22px;
+}
+
+.category-card-title {
+    margin: 0;
+    color: var(--color-primary);
+    font-size: var(--font-size-4xl);
+    font-weight: var(--font-weight-semibold);
+    line-height: 1.1;
+}
+
+@media (max-width: 768px) {
+    .category-card {
+        border-radius: var(--radius-lg);
+    }
+
+    .category-card-content {
+        padding: 14px;
+    }
+
+    .category-card-title {
+        font-size: 20px;
+    }
+}
+
+@media (max-width: 480px) {
+    .category-card-content {
+        padding: 10px 12px;
+    }
+
+    .category-card-title {
+        font-size: 16px;
+    }
+}
+
+
+/* ========================================
+   Vacancy card (shared pattern)
+   Used in spiral-curve-vacancies and home-vacancies sections.
+   ======================================== */
+
+.vacancy-card {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-lg);
+    min-height: 56px;
+    padding: var(--space-xs) var(--space-md);
+    border-radius: var(--radius-md);
+    text-decoration: none;
+    transition:
+        transform var(--transition-fast),
+        background var(--transition-fast);
+}
+
+.vacancy-card:hover {
+    transform: translateY(-2px);
+}
+
+/* ---- Light variant (on dark bg) ---- */
+.vacancy-card--light {
+    background: var(--color-white-12);
+    border: 1px solid var(--color-white-18);
+    color: var(--color-white);
+}
+
+.vacancy-card--light:hover {
+    background: var(--color-white-20);
+}
+
+/* ---- Amber variant (on white/light bg) ---- */
+.vacancy-card--amber {
+    background: var(--color-white-18);
+    border: 1px solid var(--color-white-24);
+    color: var(--color-primary);
+}
+
+.vacancy-card--amber:hover {
+    background: var(--color-white-28);
+}
+
+.vacancy-card-name {
+    min-width: 0;
+    font-size: var(--font-size-xl);
+    font-weight: var(--font-weight-bold);
+    line-height: 1.15;
+    color: inherit;
+}
+
+.vacancy-card-salary {
+    flex: 0 0 auto;
+    font-size: var(--font-size-base);
+    font-weight: var(--font-weight-bold);
+    line-height: 1.2;
+}
+
+.vacancy-card--light .vacancy-card-salary {
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.vacancy-card--amber .vacancy-card-salary {
+    color: var(--color-primary-70);
+}
+
+@media (max-width: 768px) {
+    .vacancy-card {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: var(--space-sm);
+    }
+}

@@ -1,0 +1,20 @@
+<a
+    href="{% url 'category_detail' category.slug %}"
+    class="category-card"
+>
+    <div class="category-card-image-wrapper">
+        <img
+            src="{{ category.image_url }}"
+            alt="{{ category.name }}"
+            class="category-card-image"
+            loading="lazy"
+            decoding="async"
+        >
+    </div>
+
+    <div class="category-card-content">
+        <h2 class="category-card-title">
+            {{ category.name }}
+        </h2>
+    </div>
+</a>

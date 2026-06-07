@@ -1,7 +1,7 @@
 {% extends "admin/base.html" %}
 {% load i18n static %}
 
-{% block title %}{% if subtitle %}{{ subtitle }} | {% endif %}{{ title }} | {{ site_title|default:"Brauni Food" }}{% endblock %}
+{% block title %}{% if subtitle %}{{ subtitle }} | {% endif %}{{ title }} | {{ site_title|default:"Брауни Фуд" }}{% endblock %}
 
 {% block extrastyle %}
 {{ block.super }}
@@ -21,9 +21,9 @@
 
 {% block branding %}
 <div id="site-name" class="bf-brand">
-  <a href="{% url 'admin:index' %}" aria-label="Brauni Food">
+  <a href="{% url 'admin:index' %}" aria-label="Брауни Фуд">
     <img src="{% static 'admin/img/логотип.svg' %}" alt="" width="68" height="68">
-    <span>{{ site_header|default:"Brauni Food" }}</span>
+    <span>{{ site_header|default:"Брауни Фуд" }}</span>
   </a>
 </div>
 {% endblock %}

@@ -1,0 +1,364 @@
+/* ========================================
+   Company Page
+   ======================================== */
+
+/* ---- Heading ---- */
+.company-heading-section {
+    padding: 150px 0 0 0;
+}
+
+.company-heading-title {
+    margin: 0;
+    font-family: var(--font-family-base);
+    font-size: 120px;
+    font-weight: 800;
+    text-align: center;
+}
+
+/* ---- Spiral icon block ---- */
+.company-spiral-block {
+    position: relative;
+    width: 100%;
+    min-height: 760px;
+    overflow: hidden;
+    margin-top: -100px;
+}
+
+.company-spiral-bg {
+    width: 100%;
+}
+
+.company-spiral-svg {
+    display: block;
+    width: 100vw;
+    height: auto;
+    object-fit: fill;
+    transform: scaleY(0.78);
+}
+
+.company-spiral-icons {
+    position: absolute;
+    inset: 0;
+    z-index: 5;
+    width: 100%;
+    max-width: 1400px;
+    min-height: 760px;
+    margin: 0 auto;
+    padding: 80px 56px 0;
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    align-items: center;
+}
+
+.company-spiral-icon {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    min-width: 0;
+    text-align: center;
+}
+
+.company-spiral-icon img {
+    display: block;
+    width: 168px;
+    height: 168px;
+    object-fit: contain;
+}
+
+.company-spiral-icon p {
+    max-width: 220px;
+    margin: var(--space-lg) 0 0 0;
+    color: var(--color-white);
+    font-family: var(--font-family-bold);
+    font-size: var(--font-size-2xl);
+    font-weight: var(--font-weight-bold);
+    line-height: 1.2;
+}
+
+.company-spiral-icon--halal {
+    transform: translateY(54px);
+}
+
+.company-spiral-icon--quality {
+    transform: none;
+}
+
+.company-spiral-icon--cooperation {
+    transform: translateY(-54px);
+}
+
+/* ---- Content sections ---- */
+.company-content-section {
+    padding: 60px 0 80px 0;
+}
+
+.company-content-block {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-areas: "copy";
+    align-items: center;
+    gap: var(--space-4xl);
+    padding: var(--space-4xl) 0;
+}
+
+.company-content-block--with-image {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-areas: "copy image";
+}
+
+.company-content-block--image-left {
+    grid-template-areas: "image copy";
+}
+
+.company-content-image-wrap {
+    grid-area: image;
+    overflow: hidden;
+    min-height: 360px;
+    border-radius: var(--radius-4xl);
+    background: var(--color-white-16);
+    border: 1px solid var(--color-white-28);
+}
+
+.company-content-image {
+    display: block;
+    width: 100%;
+    height: 100%;
+    min-height: 360px;
+    object-fit: cover;
+}
+
+.company-content-copy {
+    grid-area: copy;
+}
+
+.company-content-title {
+    margin: 0 0 var(--font-size-2xl) 0;
+    color: var(--color-primary);
+    font-family: var(--font-family-bold);
+    font-size: var(--font-size-7xl);
+    font-weight: var(--font-weight-bold);
+    line-height: 1;
+}
+
+.company-content-text {
+    color: var(--color-primary-74);
+    font-size: var(--font-size-2xl);
+    line-height: 1.55;
+}
+
+.company-content-text p {
+    margin: 0 0 var(--space-md) 0;
+}
+
+.company-content-text p:last-child {
+    margin-bottom: 0;
+}
+
+.company-content-divider {
+    width: 100%;
+    margin: 0;
+}
+
+/* ---- Legal block ---- */
+.company-legal-block {
+    padding: 64px 0 0 0;
+}
+
+.company-legal-list {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: var(--space-lg) var(--space-4xl);
+    margin: 0;
+}
+
+.company-legal-item {
+    display: grid;
+    grid-template-columns: minmax(90px, 0.35fr) minmax(0, 1fr);
+    gap: var(--space-lg);
+    padding: var(--space-md) 0;
+    border-bottom: 1px solid var(--color-primary-12);
+}
+
+.company-legal-item dt,
+.company-legal-item dd {
+    margin: 0;
+}
+
+.company-legal-item dt {
+    color: var(--color-primary-54);
+    font-size: var(--font-size-base);
+    font-weight: var(--font-weight-semibold);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}
+
+.company-legal-item dd {
+    color: var(--color-primary);
+    font-size: var(--font-size-xl);
+    line-height: 1.4;
+    overflow-wrap: anywhere;
+}
+
+/* ---- Responsive ---- */
+@media (max-width: 900px) {
+    .company-spiral-block,
+    .company-spiral-icons {
+        min-height: 640px;
+    }
+
+    .company-spiral-icon img {
+        width: 132px;
+        height: 132px;
+    }
+
+    .company-spiral-icon p {
+        font-size: 17px;
+    }
+
+    /* Scaled-down stagger — preserves desktop composition pattern */
+    .company-spiral-icon--halal {
+        transform: translateY(36px);
+    }
+
+    .company-spiral-icon--quality {
+        transform: none;
+    }
+
+    .company-spiral-icon--cooperation {
+        transform: translateY(-36px);
+    }
+
+    .company-content-block--with-image,
+    .company-content-block--image-left {
+        grid-template-columns: 1fr;
+        grid-template-areas:
+            "image"
+            "copy";
+    }
+
+    .company-legal-list {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 768px) {
+    .company-heading-section {
+        padding: 48px 0 0 0;
+    }
+
+    /* ---- SVG stays as full compositional background ---- */
+    .company-spiral-svg {
+        width: 100vw;
+        margin-left: 0;
+        opacity: 1;
+        transform: scaleY(0.85);
+    }
+
+    .company-spiral-block,
+    .company-spiral-icons {
+        min-height: 560px;
+    }
+
+    /* ---- Keep 3-column grid — same desktop compositional pattern ---- */
+    .company-spiral-icons {
+        position: absolute;
+        inset: 0;
+        width: calc(100% - 16px);
+        max-width: 100%;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        align-items: center;
+        padding: 0 8px 60px 8px;
+        margin: 0 auto;
+        z-index: 5;
+    }
+
+    .company-spiral-icon img {
+        width: 72px;
+        height: 72px;
+    }
+
+    .company-spiral-icon p {
+        max-width: 140px;
+        margin: 12px 0 0 0;
+        color: var(--color-white);
+        font-family: var(--font-family-bold);
+        font-size: 14px;
+        font-weight: var(--font-weight-bold);
+        line-height: 1.2;
+    }
+
+    /* Keep relative positioning — smaller offsets for mobile */
+    .company-spiral-icon--halal {
+        transform: translateY(28px);
+    }
+
+    .company-spiral-icon--quality {
+        transform: none;
+    }
+
+    .company-spiral-icon--cooperation {
+        transform: translateY(-28px);
+    }
+
+    .company-content-section {
+        padding: 24px 0 60px 0;
+    }
+
+    .company-content-block {
+        gap: 26px;
+        padding: var(--space-3xl) 0;
+    }
+
+    .company-content-image-wrap,
+    .company-content-image {
+        min-height: 260px;
+    }
+
+    .company-content-title {
+        font-size: 38px;
+    }
+
+    .company-content-text {
+        font-size: 17px;
+    }
+
+    .company-legal-block {
+        padding-top: 44px;
+    }
+
+    .company-legal-item {
+        grid-template-columns: 1fr;
+        gap: 6px;
+    }
+}
+
+@media (max-width: 480px) {
+    .company-spiral-block,
+    .company-spiral-icons {
+        min-height: 420px;
+    }
+
+    .company-spiral-icons {
+        padding: 0 4px 40px 4px;
+    }
+
+    .company-spiral-icon img {
+        width: 56px;
+        height: 56px;
+    }
+
+    .company-spiral-icon p {
+        max-width: 110px;
+        font-size: 12px;
+    }
+
+    /* Smaller offsets for small screens */
+    .company-spiral-icon--halal {
+        transform: translateY(20px);
+    }
+
+    .company-spiral-icon--cooperation {
+        transform: translateY(-20px);
+    }
+}

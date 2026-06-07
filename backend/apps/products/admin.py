@@ -1,9 +1,13 @@
 from django.contrib import admin
-from django.db import models
-from django.forms import Textarea
 from django.utils.safestring import mark_safe
 
-from apps.admin_utils import badge, image_preview, make_unique_slug, message_for_update
+from apps.admin_utils import (
+    ContentTextareaMixin,
+    badge,
+    image_preview,
+    make_unique_slug,
+    message_for_update,
+)
 
 from .models import Product
 
@@ -33,7 +37,7 @@ def unmark_as_popular(modeladmin, request, queryset):
 
 
 @admin.register(Product)
-class ProductAdmin(admin.ModelAdmin):
+class ProductAdmin(ContentTextareaMixin, admin.ModelAdmin):
     list_display = (
         "preview",
         "name",
@@ -41,7 +45,7 @@ class ProductAdmin(admin.ModelAdmin):
         "price",
         "weight",
         "sort_order",
-        "status",
+        "status_badge",
         "is_new",
         "is_popular",
         "updated_at",
@@ -124,11 +128,6 @@ class ProductAdmin(admin.ModelAdmin):
             },
         ),
     )
-    formfield_overrides = {
-        models.TextField: {
-            "widget": Textarea(attrs={"rows": 5}),
-        },
-    }
 
     @admin.display(description="Превью")
     def preview(self, obj):
@@ -139,14 +138,18 @@ class ProductAdmin(admin.ModelAdmin):
         return image_preview(obj, width=320, height=220)
 
     @admin.display(description="Статус")
-    def status(self, obj):
+    def status_badge(self, obj):
         labels = []
         if obj.is_new:
             labels.append(badge("Новинка", "info"))
         if obj.is_popular:
             labels.append(badge("Популярный", "success"))
 
-        return mark_safe(" ".join(str(label) for label in labels)) if labels else badge("Обычный", "neutral")
+        return (
+            mark_safe(" ".join(str(label) for label in labels))
+            if labels
+            else badge("Обычный", "neutral")
+        )
 
     def save_model(self, request, obj, form, change):
         if not obj.slug:

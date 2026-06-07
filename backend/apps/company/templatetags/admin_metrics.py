@@ -29,7 +29,9 @@ def brauni_admin_metrics():
         safe_count(CompanySection.objects.filter(is_active=True)),
         safe_count(CompanyGalleryImage.objects.filter(is_active=True)),
     )
-    company_blocks_count = None if any(value is None for value in company_blocks) else sum(company_blocks)
+    company_blocks_count = (
+        None if any(value is None for value in company_blocks) else sum(company_blocks)
+    )
 
     return [
         {

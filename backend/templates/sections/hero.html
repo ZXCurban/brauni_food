@@ -2,86 +2,83 @@
 
 <section class="hero-section">
 
-    <!-- TOP FADE IMAGE -->
+    <div class="hero-carousel-block">
 
-    <div class="hero-top-fade">
+        <!-- CAROUSEL IMAGES (auto-rotating) -->
 
-        <img
-            src="{% static 'images/placeholders/placeholder.png' %}"
-            alt=""
-        >
+        <div class="hero-carousel-images" id="heroCarousel">
 
-    </div>
+            {% for slide in hero_slides %}
+                <div class="hero-carousel-slide{% if forloop.first %} is-active{% endif %}">
+                    <img
+                        src="{{ slide.image_url }}"
+                        alt="{{ slide.title|default:'' }}"
+                        class="hero-carousel-img"
+                        {% if forloop.first %}fetchpriority="high" loading="eager"{% else %}loading="lazy"{% endif %}
+                        data-title="{{ slide.title|default:'' }}"
+                        data-description="{{ slide.description|default:'' }}"
+                        data-button-text="{{ slide.button_text|default:'' }}"
+                        data-button-url="{{ slide.button_url|default:'' }}"
+                    >
+                </div>
+            {% empty %}
 
+                <!-- FALLBACK: no slides in admin -->
 
-    <!-- HERO CONTENT -->
+                <div class="hero-carousel-slide is-active">
+                    <img
+                        src="{% static 'images/placeholders/placeholder.png' %}"
+                        alt=""
+                        class="hero-carousel-img"
+                        fetchpriority="high"
+                        loading="eager"
+                    >
+                </div>
 
-    <div class="hero-container">
+            {% endfor %}
 
-        <div class="hero-content">
+        </div>
 
-            <h1 class="hero-title">
-                {{ title }}
-            </h1>
+        <!-- OVERLAY CONTENT -->
 
-            {% if description %}
-                <p class="hero-description">
-                    {{ description }}
-                </p>
-            {% endif %}
+        <div class="hero-overlay">
+            <div class="hero-overlay-container">
 
-            {% if button_text %}
-                <a
-                    href="{{ button_url }}"
-                    class="hero-button"
+                {% with active_slide=hero_slides.0 %}
+
+                    <h1 class="hero-overlay-title">
+                        {{ active_slide.title|default:"Брауни Фуд" }}
+                    </h1>
+
+                    <p class="hero-overlay-text">
+                        {{ active_slide.description|default:"Свежая гастрономия, десерты и готовые решения для витрин." }}
+                    </p>
+
+                    <a
+                        href="{% firstof active_slide.button_url '/products/' %}"
+                        class="hero-overlay-button"
+                    >
+                        {{ active_slide.button_text|default:"Подробнее" }}
+                    </a>
+
+                {% endwith %}
+
+            </div>
+        </div>
+
+        <!-- CAROUSEL DOTS -->
+
+        <div class="hero-carousel-dots" id="heroCarouselDots">
+
+            {% for slide in hero_slides %}
+                <button
+                    class="hero-carousel-dot{% if forloop.first %} is-active{% endif %}"
+                    data-index="{{ forloop.counter0 }}"
+                    aria-label="Слайд {{ forloop.counter }}"
                 >
-                    {{ button_text }}
-                </a>
-            {% endif %}
-
-        </div>
-
-    </div>
-
-
-    <!-- TOP SPIRAL -->
-
-    <div class="hero-top-spiral">
-
-        <img
-            src="{% static 'images/backgrounds/spiral_straight.svg' %}"
-            alt=""
-        >
-
-    </div>
-
-
-    <!-- BLUE BLOCK -->
-
-    <div class="hero-blue-section">
-
-        <div class="hero-bottom-spiral">
-
-            <img
-                src="{% static 'images/backgrounds/spiral_curve.svg' %}"
-                alt=""
-            >
-
-        </div>
-
-        <div class="hero-blue-content">
-            
-            <h2>
-                Заголовок
-            </h2>
-
-            <p>
-                Свежие десерты и гастрономия.
-            </p>
-
-            <a href="#">
-                Подробнее
-            </a>
+                    <span class="hero-carousel-dot-bar"></span>
+                </button>
+            {% endfor %}
 
         </div>
 

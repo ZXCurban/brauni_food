@@ -1,8 +1,10 @@
 from django.db import models
+from django.urls import reverse
 from apps.admin_utils import validate_image
+from apps.mixins import ImageURLMixin
 
 
-class Category(models.Model):
+class Category(ImageURLMixin, models.Model):
     name = models.CharField(
         max_length=255,
         verbose_name="Название",
@@ -16,11 +18,11 @@ class Category(models.Model):
     )
 
     image = models.ImageField(
-        upload_to='categories/',
+        upload_to="categories/",
         blank=True,
         null=True,
         verbose_name="Изображение",
-        validators=[validate_image]
+        validators=[validate_image],
     )
 
     sort_order = models.PositiveIntegerField(
@@ -45,17 +47,12 @@ class Category(models.Model):
     )
 
     class Meta:
-        verbose_name = 'Категория'
-        verbose_name_plural = 'Категории'
-        ordering = ['sort_order', 'name']
+        verbose_name = "Категория"
+        verbose_name_plural = "Категории"
+        ordering = ["sort_order", "name"]
 
     def __str__(self):
         return self.name
-    
-    @property
-    def image_url(self):
 
-        if self.image:
-            return self.image.url
-
-        return '/static/images/placeholders/placeholder.png'
+    def get_absolute_url(self):
+        return reverse("category_detail", kwargs={"slug": self.slug})

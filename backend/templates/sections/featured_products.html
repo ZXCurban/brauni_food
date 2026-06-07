@@ -21,45 +21,55 @@
         </div>
 
 
-        <!-- CATEGORY TABS -->
+        <!-- CATEGORY CAROUSEL -->
 
-        <div class="featured-products-tabs">
+        <div class="featured-products-nav" id="categoryCarousel">
+
+            <div class="featured-products-carousel-viewport">
+                <div class="featured-products-carousel-track" id="categoryTabs">
+
+                    {% for category in categories %}
+                        <button
+                            class="
+                                featured-products-nav-item
+                                {% if category.id == featured_category.id %}
+                                    is-active
+                                {% endif %}
+                            "
+                            type="button"
+                            data-category-id="{{ category.id }}"
+                        >
+                            {{ category.name }}
+                        </button>
+                    {% endfor %}
+
+                </div>
+            </div>
+
+        </div>
+
+
+        <!-- PRODUCTS CONTAINER (per category) -->
+
+        <div class="featured-products-grids" id="categoryProducts">
 
             {% for category in categories %}
 
-                <button
-                    class="
-                        featured-products-tab
-                        {% if category.id == featured_category.id %}
-                            is-active
-                        {% endif %}
-                    "
-                    type="button"
+                <div
+                    class="featured-products-grid"
+                    data-category-id="{{ category.id }}"
+                    {% if category.id != featured_category.id %}
+                        style="display: none;"
+                    {% endif %}
                 >
-                    {{ category.name }}
-                </button>
 
-            {% endfor %}
+                    {% for product in category.featured_products %}
 
-        </div>
+                        {% include 'components/product_card.html' with is_featured_card=True %}
 
+                    {% endfor %}
 
-        <!-- ACTIVE CATEGORY -->
-
-        <div class="featured-products-active-category">
-
-            {{ featured_category.name }}
-
-        </div>
-
-
-        <!-- PRODUCTS GRID -->
-
-        <div class="featured-products-grid">
-
-            {% for product in featured_products %}
-
-                {% include 'components/product_card.html' %}
+                </div>
 
             {% endfor %}
 

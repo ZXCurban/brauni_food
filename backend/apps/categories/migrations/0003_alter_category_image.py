@@ -5,15 +5,20 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
-        ('categories', '0002_alter_category_options_category_is_active_and_more'),
+        ("categories", "0002_alter_category_options_category_is_active_and_more"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='category',
-            name='image',
-            field=models.ImageField(blank=True, null=True, upload_to='categories/', validators=[apps.admin_utils.validate_image], verbose_name='Изображение'),
+            model_name="category",
+            name="image",
+            field=models.ImageField(
+                blank=True,
+                null=True,
+                upload_to="categories/",
+                validators=[apps.admin_utils.validate_image],
+                verbose_name="Изображение",
+            ),
         ),
     ]
